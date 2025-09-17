@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'events_near_you.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key, this.profileCallback});
+  const HomeHeader({super.key, this.profileCallback, this.sideBarMenuCallback});
 
   final void Function()? profileCallback;
+  final void Function()? sideBarMenuCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,10 @@ class HomeHeader extends StatelessWidget {
           child: EventsNearYou(),
         ),
         const Spacer(),
-        Icon(Icons.menu, color: CupertinoColors.black, size: 32),
+        IconButton(
+          onPressed: sideBarMenuCallback,
+          icon: Icon(Icons.menu, color: CupertinoColors.black, size: 32),
+        ),
         // IconButton(onPressed: onPressed, icon: icon)
       ],
     );

@@ -5,6 +5,7 @@ import 'package:window_manager/window_manager.dart';
 
 import 'home_main_layout.dart';
 import 'profile_overview.dart';
+import 'side_bar_menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,17 +43,23 @@ class QiQHome extends StatefulWidget {
 
 class _QiQHomeState extends State<QiQHome> {
   bool _isProfileOverviewInFocus = false;
+  bool _isSideBarMenuInFocus = false;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         IgnorePointer(
-          ignoring: _isProfileOverviewInFocus,
+          ignoring: _isProfileOverviewInFocus || _isSideBarMenuInFocus,
           child: HomeMainLayout(
             onProfileSelected: () {
               setState(() {
                 _isProfileOverviewInFocus = true;
+              });
+            },
+            onSideBarMenuSelected: () {
+              setState(() {
+                _isSideBarMenuInFocus = true;
               });
             },
           ),
@@ -64,6 +71,17 @@ class _QiQHomeState extends State<QiQHome> {
             onReturn: () {
               setState(() {
                 _isProfileOverviewInFocus = false;
+              });
+            },
+          ),
+        ),
+        IgnorePointer(
+          ignoring: !_isSideBarMenuInFocus,
+          child: SideBarMenu(
+            isInFocus: _isSideBarMenuInFocus,
+            onReturn: () {
+              setState(() {
+                _isSideBarMenuInFocus = false;
               });
             },
           ),

@@ -1,6 +1,6 @@
 {
-    "name": "koran",
-    "short_name": "koran",
+    "name": "quran_in_quran",
+    "short_name": "quran_in_quran",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

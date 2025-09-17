@@ -6,9 +6,14 @@ import 'home_header.dart';
 import 'todays_ayah.dart';
 
 class HomeMainLayout extends StatelessWidget {
-  const HomeMainLayout({super.key, this.onProfileSelected});
+  const HomeMainLayout({
+    super.key,
+    this.onProfileSelected,
+    this.onSideBarMenuSelected,
+  });
 
   final void Function()? onProfileSelected;
+  final void Function()? onSideBarMenuSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,10 @@ class HomeMainLayout extends StatelessWidget {
                   horizontal: 12,
                   vertical: 20,
                 ),
-                child: HomeHeader(profileCallback: onProfileSelected),
+                child: HomeHeader(
+                  profileCallback: onProfileSelected,
+                  sideBarMenuCallback: onSideBarMenuSelected,
+                ),
               ),
               SizedBox(height: 40),
               Padding(
