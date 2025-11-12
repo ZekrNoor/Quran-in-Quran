@@ -10,10 +10,12 @@ class HomeMainLayout extends StatelessWidget {
     super.key,
     this.onProfileSelected,
     this.onSideBarMenuSelected,
+    this.onResumeReading,
   });
 
   final void Function()? onProfileSelected;
   final void Function()? onSideBarMenuSelected;
+  final void Function()? onResumeReading;
 
   @override
   Widget build(BuildContext context) {
@@ -31,40 +33,52 @@ class HomeMainLayout extends StatelessWidget {
       //     ),
       //   ),
       // ),
+
       child: SafeArea(
         child: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+
           child: ListView(
             physics: ClampingScrollPhysics(),
+
             children: [
               Padding(
                 padding: EdgeInsetsGeometry.symmetric(
                   horizontal: 12,
                   vertical: 20,
                 ),
+
                 child: HomeHeader(
                   profileCallback: onProfileSelected,
                   sideBarMenuCallback: onSideBarMenuSelected,
                 ),
               ),
+
               SizedBox(height: 40),
+
               Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                child: AlQuranAlKarim(),
+                child: AlQuranAlKarim(onResumeReading: onResumeReading),
               ),
+
               SizedBox(height: 40),
+
               Padding(
                 padding: EdgeInsetsGeometry.only(right: 12),
+
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [const Spacer(), DailyMeditation()],
                 ),
               ),
+
               SizedBox(height: 40),
+
               Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
                 child: TodaysAyah(),
               ),
+
               SizedBox(height: 40),
             ],
           ),

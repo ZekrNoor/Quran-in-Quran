@@ -1,11 +1,12 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
+
 import 'package:window_manager/window_manager.dart';
 
-import 'home_main_layout.dart';
-import 'profile_overview.dart';
-import 'side_bar_menu.dart';
+import 'package:quran_in_quran/nav_bar.dart';
+import 'home.dart';
+import 'zekrnoor_client.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,70 +25,23 @@ void main() async {
 class QiQApp extends StatelessWidget {
   const QiQApp({super.key});
 
+  static ZekrnoorClient client = ZekrnoorClient();
+
   @override
   Widget build(BuildContext context) {
+    client.login();
+
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
       theme: CupertinoThemeData(brightness: Brightness.light),
-      home: QiQHome(),
-    );
-  }
-}
+      home: Stack(
+        alignment: AlignmentGeometry.center,
 
-class QiQHome extends StatefulWidget {
-  const QiQHome({super.key});
-
-  @override
-  State<QiQHome> createState() => _QiQHomeState();
-}
-
-class _QiQHomeState extends State<QiQHome> {
-  bool _isProfileOverviewInFocus = false;
-  bool _isSideBarMenuInFocus = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        IgnorePointer(
-          ignoring: _isProfileOverviewInFocus || _isSideBarMenuInFocus,
-          child: HomeMainLayout(
-            onProfileSelected: () {
-              setState(() {
-                _isProfileOverviewInFocus = true;
-              });
-            },
-            onSideBarMenuSelected: () {
-              setState(() {
-                _isSideBarMenuInFocus = true;
-              });
-            },
-          ),
-        ),
-        IgnorePointer(
-          ignoring: !_isProfileOverviewInFocus,
-          child: ProfileOverview(
-            isInFocus: _isProfileOverviewInFocus,
-            onReturn: () {
-              setState(() {
-                _isProfileOverviewInFocus = false;
-              });
-            },
-          ),
-        ),
-        IgnorePointer(
-          ignoring: !_isSideBarMenuInFocus,
-          child: SideBarMenu(
-            isInFocus: _isSideBarMenuInFocus,
-            onReturn: () {
-              setState(() {
-                _isSideBarMenuInFocus = false;
-              });
-            },
-          ),
-        ),
-        // TODO: implement menu animation & functionality
-      ],
+        children: [
+          QiQHome(),
+          Positioned(bottom: 10, child: NavBar()),
+        ],
+      ),
     );
   }
 }

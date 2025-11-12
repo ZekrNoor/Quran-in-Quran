@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final double sideBarMenuBlur = 6;
-final Curve sideBarMenuAnimationCurve = Curves.easeInOut;
+const double sideBarMenuBlur = 6;
+const Curve sideBarMenuAnimationCurve = Curves.easeInOut;
 
 class SideBarMenu extends StatefulWidget {
   const SideBarMenu({super.key, this.isInFocus = false, this.onReturn});
@@ -67,80 +67,79 @@ class _SideBarMenuState extends State<SideBarMenu>
       _controller.reverse();
     }
 
-    return Opacity(
-      opacity: _opacityAnimation.value,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: sideBarMenuBlur,
-          sigmaY: sideBarMenuBlur,
-        ),
-        child: Row(
-          children: [
-            Expanded(child: GestureDetector(onTap: widget.onReturn)),
-            SlideTransition(
-              position: _offsetAnimation,
-              child: Localizations(
-                locale: Locale('en', 'US'),
-                delegates: [
-                  DefaultMaterialLocalizations.delegate,
-                  DefaultWidgetsLocalizations.delegate,
-                  DefaultCupertinoLocalizations.delegate,
-                ],
-                child: NavigationRail(
-                  selectedIndex: _selectedIndex,
-                  groupAlignment: groupAlignment,
-                  onDestinationSelected: (int index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  labelType: labelType,
-                  leading: showLeading
-                      ? FloatingActionButton(
-                          elevation: 0,
-                          onPressed: () {
-                            // Add your onPressed code here!
-                          },
-                          child: const Icon(Icons.add),
-                        )
-                      : const SizedBox(),
-                  trailing: showTrailing
-                      ? IconButton(
-                          onPressed: () {
-                            // Add your onPressed code here!
-                          },
-                          icon: const Icon(Icons.more_horiz_rounded),
-                        )
-                      : const SizedBox(),
-                  destinations: const <NavigationRailDestination>[
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite_border),
-                      selectedIcon: Icon(Icons.favorite),
-                      label: Text('First'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Badge(child: Icon(Icons.bookmark_border)),
-                      selectedIcon: Badge(child: Icon(Icons.book)),
-                      label: Text('Second'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Badge(
-                        label: Text('4'),
-                        child: Icon(Icons.star_border),
-                      ),
-                      selectedIcon: Badge(
-                        label: Text('4'),
-                        child: Icon(Icons.star),
-                      ),
-                      label: Text('Third'),
-                    ),
-                  ],
-                ),
+    return Row(
+      children: [
+        Expanded(
+          child: Opacity(
+            opacity: _opacityAnimation.value,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: sideBarMenuBlur,
+                sigmaY: sideBarMenuBlur,
               ),
+              child: GestureDetector(onTap: widget.onReturn),
             ),
-          ],
+          ),
         ),
-      ),
+        SlideTransition(
+          position: _offsetAnimation,
+          child: Localizations(
+            locale: Locale('en', 'US'),
+            delegates: [
+              DefaultMaterialLocalizations.delegate,
+              DefaultWidgetsLocalizations.delegate,
+              DefaultCupertinoLocalizations.delegate,
+            ],
+            child: NavigationRail(
+              selectedIndex: _selectedIndex,
+              groupAlignment: groupAlignment,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              labelType: labelType,
+              leading: showLeading
+                  ? FloatingActionButton(
+                      elevation: 0,
+                      onPressed: () {
+                        // Add your onPressed code here!
+                      },
+                      child: const Icon(Icons.add),
+                    )
+                  : const SizedBox(),
+              trailing: showTrailing
+                  ? IconButton(
+                      onPressed: () {
+                        // Add your onPressed code here!
+                      },
+                      icon: const Icon(Icons.more_horiz_rounded),
+                    )
+                  : const SizedBox(),
+              destinations: const <NavigationRailDestination>[
+                NavigationRailDestination(
+                  icon: Icon(Icons.favorite_border),
+                  selectedIcon: Icon(Icons.favorite),
+                  label: Text('First'),
+                ),
+                NavigationRailDestination(
+                  icon: Badge(child: Icon(Icons.bookmark_border)),
+                  selectedIcon: Badge(child: Icon(Icons.book)),
+                  label: Text('Second'),
+                ),
+                NavigationRailDestination(
+                  icon: Badge(label: Text('4'), child: Icon(Icons.star_border)),
+                  selectedIcon: Badge(
+                    label: Text('4'),
+                    child: Icon(Icons.star),
+                  ),
+                  label: Text('Third'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
