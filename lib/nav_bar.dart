@@ -20,7 +20,7 @@ class NotchedContainerClipper extends CustomClipper<Path> {
 
     path.lineTo(position - width / 2 - 20, 0); // Start of notch
     path.cubicTo(
-      position - width / 2 + 10,
+      position - width / 2 + 15,
       0,
       position - depth,
       depth,
@@ -30,7 +30,7 @@ class NotchedContainerClipper extends CustomClipper<Path> {
     path.cubicTo(
       position + depth,
       depth,
-      position + width / 2 - 10,
+      position + width / 2 - 15,
       0,
       position + width / 2 + 20,
       0,
@@ -133,6 +133,77 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               child: SizedBox(
                 height: LocalConsts.navBarHeight - 2,
                 width: LocalConsts.navBarWidth - 2,
+
+                child: Stack(
+                  alignment: AlignmentGeometry.bottomCenter,
+
+                  children: [
+                    Positioned(
+                      bottom: 10,
+                      left: 60,
+
+                      child: Column(
+                        children: [
+                          Icon(
+                            PhosphorIconsRegular.house,
+
+                            color: LocalColors.navBarButtonIcon,
+                            size: LocalConsts.navBarIconSize,
+                          ),
+
+                          SizedBox(height: 2),
+
+                          Text(
+                            'صفحه اصلی',
+
+                            style: TextStyle(
+                              color: LocalColors.quranAppText,
+
+                              fontFamily: 'Estedad',
+                              fontSize: 16.0,
+                              fontVariations: [
+                                FontVariation('wght', 500.0),
+                                FontVariation('KSHD', 100.0),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      right: 80,
+
+                      child: Column(
+                        children: [
+                          Icon(
+                            PhosphorIconsRegular.magnifyingGlass,
+
+                            color: LocalColors.navBarButtonIcon,
+                            size: LocalConsts.navBarIconSize,
+                          ),
+
+                          SizedBox(height: 2),
+
+                          Text(
+                            'کاوش',
+
+                            style: TextStyle(
+                              color: LocalColors.quranAppText,
+
+                              fontFamily: 'Estedad',
+                              fontSize: 16.0,
+                              fontVariations: [
+                                FontVariation('wght', 500.0),
+                                FontVariation('KSHD', 100.0),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
