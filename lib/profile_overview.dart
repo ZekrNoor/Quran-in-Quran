@@ -4,16 +4,30 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final double profileOverviewBlur = 6;
-final double profileOverviewIconSize = 32;
-final double profileOverviewPaddingHorizontal = 12;
-final double profileOverviewPaddingVertical = 20;
-final Curve profileOverviewAnimationCurve = Curves.easeInOut;
+const double profileOverviewBlur = 6;
+const double profileOverviewIconSize = 32;
+const double profileOverviewIconConstraint = 24;
+const double profileOverviewPaddingHorizontal = 12;
+const double profileOverviewPaddingVertical = 20;
+const double profileOverviewIconsDistance = 2.0;
+const Curve profileOverviewAnimationCurve = Curves.easeInOut;
 
 class ProfileOverview extends StatefulWidget {
-  const ProfileOverview({super.key, this.isInFocus = false, this.onReturn});
+  const ProfileOverview({
+    super.key,
+    this.isInFocus = false,
+    this.onProfileSelected,
+    this.onNotesSelected,
+    this.onBookmarksSelected,
+    this.onFavoritesSelected,
+    this.onReturn,
+  });
 
   final bool isInFocus;
+  final Function()? onProfileSelected;
+  final Function()? onFavoritesSelected;
+  final Function()? onBookmarksSelected;
+  final Function()? onNotesSelected;
   final Function()? onReturn;
 
   @override
@@ -24,9 +38,9 @@ class _ProfileOverviewState extends State<ProfileOverview>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
-  late Animation<Offset> _offsetAnimation1;
-  late Animation<Offset> _offsetAnimation2;
-  late Animation<Offset> _offsetAnimation3;
+  late Animation<Offset> _offsetAnimationNotes;
+  late Animation<Offset> _offsetAnimationBookmarks;
+  late Animation<Offset> _offsetAnimationFavorites;
 
   @override
   void initState() {
@@ -44,30 +58,32 @@ class _ProfileOverviewState extends State<ProfileOverview>
           setState(() {});
         });
 
-    _offsetAnimation1 =
+    _offsetAnimationNotes =
         Tween<Offset>(
           begin: Offset.zero,
-          end: Offset.fromDirection(0 * pi / 8, 1.2),
+          end: Offset.fromDirection(0 * pi / 8, profileOverviewIconsDistance),
         ).animate(
           CurvedAnimation(
             parent: _controller,
             curve: profileOverviewAnimationCurve,
           ),
         );
-    _offsetAnimation2 =
+
+    _offsetAnimationBookmarks =
         Tween<Offset>(
           begin: Offset.zero,
-          end: Offset.fromDirection(1.85 * pi / 8, 1.2),
+          end: Offset.fromDirection(2 * pi / 8, profileOverviewIconsDistance),
         ).animate(
           CurvedAnimation(
             parent: _controller,
             curve: profileOverviewAnimationCurve,
           ),
         );
-    _offsetAnimation3 =
+
+    _offsetAnimationFavorites =
         Tween<Offset>(
           begin: Offset.zero,
-          end: Offset.fromDirection(4 * pi / 8, 1.2),
+          end: Offset.fromDirection(4 * pi / 8, profileOverviewIconsDistance),
         ).animate(
           CurvedAnimation(
             parent: _controller,
@@ -106,29 +122,36 @@ class _ProfileOverviewState extends State<ProfileOverview>
                 vertical: profileOverviewPaddingVertical,
               ),
               child: IconButton(
+                padding: EdgeInsetsGeometry.all(5),
                 style: IconButton.styleFrom(
                   backgroundColor: CupertinoColors.systemYellow,
                 ),
-                onPressed: () {},
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                  color: CupertinoColors.black,
-                  size: profileOverviewIconSize,
+                onPressed: widget.onProfileSelected,
+                constraints: BoxConstraints.tight(
+                  Size.fromRadius(profileOverviewIconConstraint),
+                ),
+                icon: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    'https://picsum.photos/200/300',
+                  ),
                 ),
               ),
             ),
-            SlideTransition(
-              position: _offsetAnimation1,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: profileOverviewPaddingHorizontal,
-                  vertical: profileOverviewPaddingVertical,
-                ),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(
+                horizontal: profileOverviewPaddingHorizontal,
+                vertical: profileOverviewPaddingVertical,
+              ),
+              child: SlideTransition(
+                position: _offsetAnimationNotes,
                 child: IconButton(
                   style: IconButton.styleFrom(
                     backgroundColor: CupertinoColors.systemYellow,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onNotesSelected,
+                  constraints: BoxConstraints.tight(
+                    Size.fromRadius(profileOverviewIconConstraint),
+                  ),
                   icon: Icon(
                     Icons.notes,
                     color: CupertinoColors.black,
@@ -137,18 +160,21 @@ class _ProfileOverviewState extends State<ProfileOverview>
                 ),
               ),
             ),
-            SlideTransition(
-              position: _offsetAnimation2,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: profileOverviewPaddingHorizontal,
-                  vertical: profileOverviewPaddingVertical,
-                ),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(
+                horizontal: profileOverviewPaddingHorizontal,
+                vertical: profileOverviewPaddingVertical,
+              ),
+              child: SlideTransition(
+                position: _offsetAnimationBookmarks,
                 child: IconButton(
                   style: IconButton.styleFrom(
                     backgroundColor: CupertinoColors.systemYellow,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onBookmarksSelected,
+                  constraints: BoxConstraints.tight(
+                    Size.fromRadius(profileOverviewIconConstraint),
+                  ),
                   icon: Icon(
                     Icons.bookmark,
                     color: CupertinoColors.black,
@@ -157,18 +183,21 @@ class _ProfileOverviewState extends State<ProfileOverview>
                 ),
               ),
             ),
-            SlideTransition(
-              position: _offsetAnimation3,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: profileOverviewPaddingHorizontal,
-                  vertical: profileOverviewPaddingVertical,
-                ),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(
+                horizontal: profileOverviewPaddingHorizontal,
+                vertical: profileOverviewPaddingVertical,
+              ),
+              child: SlideTransition(
+                position: _offsetAnimationFavorites,
                 child: IconButton(
                   style: IconButton.styleFrom(
                     backgroundColor: CupertinoColors.systemYellow,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onFavoritesSelected,
+                  constraints: BoxConstraints.tight(
+                    Size.fromRadius(profileOverviewIconConstraint),
+                  ),
                   icon: Icon(
                     Icons.favorite,
                     color: CupertinoColors.black,

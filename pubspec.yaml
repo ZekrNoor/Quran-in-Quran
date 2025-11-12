@@ -34,7 +34,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: 1.0.8
+
   window_manager: 0.5.1
+  http: 1.5.0
+  path_provider: 2.1.5
+  phosphor_flutter: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +74,30 @@ flutter:
   # https://flutter.dev/to/asset-from-package
 
   fonts:
+    - family: P283
+      fonts:
+        - asset: assets/fonts/p283.ttf
+
+    - family: P305
+      fonts:
+        - asset: assets/fonts/p305.ttf
+
+    - family: Bismillah
+      fonts:
+        - asset: assets/fonts/bismillah.ttf
+
+    - family: Quran
+      fonts:
+        - asset: assets/fonts/quran_common.ttf
+
+    - family: Uthmanic
+      fonts:
+        - asset: assets/fonts/Uthmanic.otf
+
+    - family: Sindhi
+      fonts:
+        - asset: assets/fonts/kfgqpc-sindhi-naskh.ttf
+
     - family: Estedad
       fonts:
         - asset: assets/fonts/Estedad[KSHD,wght].ttf

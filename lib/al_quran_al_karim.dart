@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'local_strings.dart';
 
 class AlQuranAlKarim extends StatelessWidget {
-  const AlQuranAlKarim({super.key});
+  const AlQuranAlKarim({super.key, this.onResumeReading});
+
+  final void Function()? onResumeReading;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +94,7 @@ class AlQuranAlKarim extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                     borderRadius: BorderRadius.circular(100),
                     color: Color.fromARGB(255, 255, 219, 79),
-                    onPressed: () {},
+                    onPressed: onResumeReading,
                     child: Row(
                       children: [
                         const Text(
