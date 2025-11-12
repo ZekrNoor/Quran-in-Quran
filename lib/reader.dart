@@ -79,7 +79,7 @@ class Word extends StatelessWidget {
         fontFamily: 'P283',
         fontSize: 22,
 
-        height: 1.8,
+        height: 2.1,
       ),
     );
   }
@@ -170,7 +170,7 @@ class _QiQReaderState extends State<QiQReader> {
               ),
             ),
 
-            SizedBox(height: 30),
+            SizedBox(height: 10),
 
             Padding(
               padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
