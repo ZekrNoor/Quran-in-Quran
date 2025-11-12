@@ -63,6 +63,45 @@ class QiQReaderContainer extends StatelessWidget {
   }
 }
 
+class Word extends StatelessWidget {
+  const Word(this.number, {super.key});
+
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      glyphRange(number, number),
+
+      style: TextStyle(
+        color: LocalColors.quranAppText,
+
+        fontFamily: 'P283',
+        fontSize: 22,
+
+        height: 1.8,
+      ),
+    );
+  }
+}
+
+class Line extends StatelessWidget {
+  const Line(this.from, this.to, {super.key});
+
+  final int from;
+  final int to;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      textDirection: TextDirection.rtl,
+
+      children: [for (var i = from; i <= to; i++) Word(i)],
+    );
+  }
+}
+
 class QiQReader extends StatefulWidget {
   const QiQReader({super.key});
 
@@ -135,21 +174,25 @@ class _QiQReaderState extends State<QiQReader> {
 
             Padding(
               padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
-              child: Text(
-                glyphRange(1, 80),
 
-                textAlign: TextAlign.justify,
-                textDirection: TextDirection.rtl,
-
-                style: TextStyle(
-                  color: LocalColors.quranAppText,
-
-                  fontFamily: 'P283',
-                  fontSize: 30,
-
-                  height: 1.6,
-                  letterSpacing: 7.0,
-                ),
+              child: Column(
+                children: [
+                  Line(1, 12),
+                  Line(13, 22),
+                  Line(23, 31),
+                  Line(32, 41),
+                  Line(42, 51),
+                  Line(52, 61),
+                  Line(62, 69),
+                  Line(70, 78),
+                  Line(79, 89),
+                  Line(90, 99),
+                  Line(100, 110),
+                  Line(111, 123),
+                  Line(124, 134),
+                  Line(135, 144),
+                  Line(145, 155),
+                ],
               ),
             ),
 
