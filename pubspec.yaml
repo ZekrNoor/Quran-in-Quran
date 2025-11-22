@@ -38,7 +38,7 @@ dependencies:
   window_manager: 0.5.1
   http: 1.5.0
   path_provider: 2.1.5
-  phosphor_flutter: ^2.1.0
+  phosphor_flutter: 2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +65,6 @@ flutter:
   assets:
     - assets/images/al_quran_al_karim.png
     - assets/images/desert.jpg
-    # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -74,21 +73,2425 @@ flutter:
   # https://flutter.dev/to/asset-from-package
 
   fonts:
+    - family: P1
+      fonts:
+        - asset: assets/fonts/p1.otf
+
+    - family: P2
+      fonts:
+        - asset: assets/fonts/p2.otf
+
+    - family: P3
+      fonts:
+        - asset: assets/fonts/p3.otf
+
+    - family: P4
+      fonts:
+        - asset: assets/fonts/p4.otf
+
+    - family: P5
+      fonts:
+        - asset: assets/fonts/p5.otf
+
+    - family: P6
+      fonts:
+        - asset: assets/fonts/p6.otf
+
+    - family: P7
+      fonts:
+        - asset: assets/fonts/p7.otf
+
+    - family: P8
+      fonts:
+        - asset: assets/fonts/p8.otf
+
+    - family: P9
+      fonts:
+        - asset: assets/fonts/p9.otf
+
+    - family: P10
+      fonts:
+        - asset: assets/fonts/p10.otf
+
+    - family: P11
+      fonts:
+        - asset: assets/fonts/p11.otf
+
+    - family: P12
+      fonts:
+        - asset: assets/fonts/p12.otf
+
+    - family: P13
+      fonts:
+        - asset: assets/fonts/p13.otf
+
+    - family: P14
+      fonts:
+        - asset: assets/fonts/p14.otf
+
+    - family: P15
+      fonts:
+        - asset: assets/fonts/p15.otf
+
+    - family: P16
+      fonts:
+        - asset: assets/fonts/p16.otf
+
+    - family: P17
+      fonts:
+        - asset: assets/fonts/p17.otf
+
+    - family: P18
+      fonts:
+        - asset: assets/fonts/p18.otf
+
+    - family: P19
+      fonts:
+        - asset: assets/fonts/p19.otf
+
+    - family: P20
+      fonts:
+        - asset: assets/fonts/p20.otf
+
+    - family: P21
+      fonts:
+        - asset: assets/fonts/p21.otf
+
+    - family: P22
+      fonts:
+        - asset: assets/fonts/p22.otf
+
+    - family: P23
+      fonts:
+        - asset: assets/fonts/p23.otf
+
+    - family: P24
+      fonts:
+        - asset: assets/fonts/p24.otf
+
+    - family: P25
+      fonts:
+        - asset: assets/fonts/p25.otf
+
+    - family: P26
+      fonts:
+        - asset: assets/fonts/p26.otf
+
+    - family: P27
+      fonts:
+        - asset: assets/fonts/p27.otf
+
+    - family: P28
+      fonts:
+        - asset: assets/fonts/p28.otf
+
+    - family: P29
+      fonts:
+        - asset: assets/fonts/p29.otf
+
+    - family: P30
+      fonts:
+        - asset: assets/fonts/p30.otf
+
+    - family: P31
+      fonts:
+        - asset: assets/fonts/p31.otf
+
+    - family: P32
+      fonts:
+        - asset: assets/fonts/p32.otf
+
+    - family: P33
+      fonts:
+        - asset: assets/fonts/p33.otf
+
+    - family: P34
+      fonts:
+        - asset: assets/fonts/p34.otf
+
+    - family: P35
+      fonts:
+        - asset: assets/fonts/p35.otf
+
+    - family: P36
+      fonts:
+        - asset: assets/fonts/p36.otf
+
+    - family: P37
+      fonts:
+        - asset: assets/fonts/p37.otf
+
+    - family: P38
+      fonts:
+        - asset: assets/fonts/p38.otf
+
+    - family: P39
+      fonts:
+        - asset: assets/fonts/p39.otf
+
+    - family: P40
+      fonts:
+        - asset: assets/fonts/p40.otf
+
+    - family: P41
+      fonts:
+        - asset: assets/fonts/p41.otf
+
+    - family: P42
+      fonts:
+        - asset: assets/fonts/p42.otf
+
+    - family: P43
+      fonts:
+        - asset: assets/fonts/p43.otf
+
+    - family: P44
+      fonts:
+        - asset: assets/fonts/p44.otf
+
+    - family: P45
+      fonts:
+        - asset: assets/fonts/p45.otf
+
+    - family: P46
+      fonts:
+        - asset: assets/fonts/p46.otf
+
+    - family: P47
+      fonts:
+        - asset: assets/fonts/p47.otf
+
+    - family: P48
+      fonts:
+        - asset: assets/fonts/p48.otf
+
+    - family: P49
+      fonts:
+        - asset: assets/fonts/p49.otf
+
+    - family: P50
+      fonts:
+        - asset: assets/fonts/p50.otf
+
+    - family: P51
+      fonts:
+        - asset: assets/fonts/p51.otf
+
+    - family: P52
+      fonts:
+        - asset: assets/fonts/p52.otf
+
+    - family: P53
+      fonts:
+        - asset: assets/fonts/p53.otf
+
+    - family: P54
+      fonts:
+        - asset: assets/fonts/p54.otf
+
+    - family: P55
+      fonts:
+        - asset: assets/fonts/p55.otf
+
+    - family: P56
+      fonts:
+        - asset: assets/fonts/p56.otf
+
+    - family: P57
+      fonts:
+        - asset: assets/fonts/p57.otf
+
+    - family: P58
+      fonts:
+        - asset: assets/fonts/p58.otf
+
+    - family: P59
+      fonts:
+        - asset: assets/fonts/p59.otf
+
+    - family: P60
+      fonts:
+        - asset: assets/fonts/p60.otf
+
+    - family: P61
+      fonts:
+        - asset: assets/fonts/p61.otf
+
+    - family: P62
+      fonts:
+        - asset: assets/fonts/p62.otf
+
+    - family: P63
+      fonts:
+        - asset: assets/fonts/p63.otf
+
+    - family: P64
+      fonts:
+        - asset: assets/fonts/p64.otf
+
+    - family: P65
+      fonts:
+        - asset: assets/fonts/p65.otf
+
+    - family: P66
+      fonts:
+        - asset: assets/fonts/p66.otf
+
+    - family: P67
+      fonts:
+        - asset: assets/fonts/p67.otf
+
+    - family: P68
+      fonts:
+        - asset: assets/fonts/p68.otf
+
+    - family: P69
+      fonts:
+        - asset: assets/fonts/p69.otf
+
+    - family: P70
+      fonts:
+        - asset: assets/fonts/p70.otf
+
+    - family: P71
+      fonts:
+        - asset: assets/fonts/p71.otf
+
+    - family: P72
+      fonts:
+        - asset: assets/fonts/p72.otf
+
+    - family: P73
+      fonts:
+        - asset: assets/fonts/p73.otf
+
+    - family: P74
+      fonts:
+        - asset: assets/fonts/p74.otf
+
+    - family: P75
+      fonts:
+        - asset: assets/fonts/p75.otf
+
+    - family: P76
+      fonts:
+        - asset: assets/fonts/p76.otf
+
+    - family: P77
+      fonts:
+        - asset: assets/fonts/p77.otf
+
+    - family: P78
+      fonts:
+        - asset: assets/fonts/p78.otf
+
+    - family: P79
+      fonts:
+        - asset: assets/fonts/p79.otf
+
+    - family: P80
+      fonts:
+        - asset: assets/fonts/p80.otf
+
+    - family: P81
+      fonts:
+        - asset: assets/fonts/p81.otf
+
+    - family: P82
+      fonts:
+        - asset: assets/fonts/p82.otf
+
+    - family: P83
+      fonts:
+        - asset: assets/fonts/p83.otf
+
+    - family: P84
+      fonts:
+        - asset: assets/fonts/p84.otf
+
+    - family: P85
+      fonts:
+        - asset: assets/fonts/p85.otf
+
+    - family: P86
+      fonts:
+        - asset: assets/fonts/p86.otf
+
+    - family: P87
+      fonts:
+        - asset: assets/fonts/p87.otf
+
+    - family: P88
+      fonts:
+        - asset: assets/fonts/p88.otf
+
+    - family: P89
+      fonts:
+        - asset: assets/fonts/p89.otf
+
+    - family: P90
+      fonts:
+        - asset: assets/fonts/p90.otf
+
+    - family: P91
+      fonts:
+        - asset: assets/fonts/p91.otf
+
+    - family: P92
+      fonts:
+        - asset: assets/fonts/p92.otf
+
+    - family: P93
+      fonts:
+        - asset: assets/fonts/p93.otf
+
+    - family: P94
+      fonts:
+        - asset: assets/fonts/p94.otf
+
+    - family: P95
+      fonts:
+        - asset: assets/fonts/p95.otf
+
+    - family: P96
+      fonts:
+        - asset: assets/fonts/p96.otf
+
+    - family: P97
+      fonts:
+        - asset: assets/fonts/p97.otf
+
+    - family: P98
+      fonts:
+        - asset: assets/fonts/p98.otf
+
+    - family: P99
+      fonts:
+        - asset: assets/fonts/p99.otf
+
+    - family: P100
+      fonts:
+        - asset: assets/fonts/p100.otf
+
+    - family: P101
+      fonts:
+        - asset: assets/fonts/p101.otf
+
+    - family: P102
+      fonts:
+        - asset: assets/fonts/p102.otf
+
+    - family: P103
+      fonts:
+        - asset: assets/fonts/p103.otf
+
+    - family: P104
+      fonts:
+        - asset: assets/fonts/p104.otf
+
+    - family: P105
+      fonts:
+        - asset: assets/fonts/p105.otf
+
+    - family: P106
+      fonts:
+        - asset: assets/fonts/p106.otf
+
+    - family: P107
+      fonts:
+        - asset: assets/fonts/p107.otf
+
+    - family: P108
+      fonts:
+        - asset: assets/fonts/p108.otf
+
+    - family: P109
+      fonts:
+        - asset: assets/fonts/p109.otf
+
+    - family: P110
+      fonts:
+        - asset: assets/fonts/p110.otf
+
+    - family: P111
+      fonts:
+        - asset: assets/fonts/p111.otf
+
+    - family: P112
+      fonts:
+        - asset: assets/fonts/p112.otf
+
+    - family: P113
+      fonts:
+        - asset: assets/fonts/p113.otf
+
+    - family: P114
+      fonts:
+        - asset: assets/fonts/p114.otf
+
+    - family: P115
+      fonts:
+        - asset: assets/fonts/p115.otf
+
+    - family: P116
+      fonts:
+        - asset: assets/fonts/p116.otf
+
+    - family: P117
+      fonts:
+        - asset: assets/fonts/p117.otf
+
+    - family: P118
+      fonts:
+        - asset: assets/fonts/p118.otf
+
+    - family: P119
+      fonts:
+        - asset: assets/fonts/p119.otf
+
+    - family: P120
+      fonts:
+        - asset: assets/fonts/p120.otf
+
+    - family: P121
+      fonts:
+        - asset: assets/fonts/p121.otf
+
+    - family: P122
+      fonts:
+        - asset: assets/fonts/p122.otf
+
+    - family: P123
+      fonts:
+        - asset: assets/fonts/p123.otf
+
+    - family: P124
+      fonts:
+        - asset: assets/fonts/p124.otf
+
+    - family: P125
+      fonts:
+        - asset: assets/fonts/p125.otf
+
+    - family: P126
+      fonts:
+        - asset: assets/fonts/p126.otf
+
+    - family: P127
+      fonts:
+        - asset: assets/fonts/p127.otf
+
+    - family: P128
+      fonts:
+        - asset: assets/fonts/p128.otf
+
+    - family: P129
+      fonts:
+        - asset: assets/fonts/p129.otf
+
+    - family: P130
+      fonts:
+        - asset: assets/fonts/p130.otf
+
+    - family: P131
+      fonts:
+        - asset: assets/fonts/p131.otf
+
+    - family: P132
+      fonts:
+        - asset: assets/fonts/p132.otf
+
+    - family: P133
+      fonts:
+        - asset: assets/fonts/p133.otf
+
+    - family: P134
+      fonts:
+        - asset: assets/fonts/p134.otf
+
+    - family: P135
+      fonts:
+        - asset: assets/fonts/p135.otf
+
+    - family: P136
+      fonts:
+        - asset: assets/fonts/p136.otf
+
+    - family: P137
+      fonts:
+        - asset: assets/fonts/p137.otf
+
+    - family: P138
+      fonts:
+        - asset: assets/fonts/p138.otf
+
+    - family: P139
+      fonts:
+        - asset: assets/fonts/p139.otf
+
+    - family: P140
+      fonts:
+        - asset: assets/fonts/p140.otf
+
+    - family: P141
+      fonts:
+        - asset: assets/fonts/p141.otf
+
+    - family: P142
+      fonts:
+        - asset: assets/fonts/p142.otf
+
+    - family: P143
+      fonts:
+        - asset: assets/fonts/p143.otf
+
+    - family: P144
+      fonts:
+        - asset: assets/fonts/p144.otf
+
+    - family: P145
+      fonts:
+        - asset: assets/fonts/p145.otf
+
+    - family: P146
+      fonts:
+        - asset: assets/fonts/p146.otf
+
+    - family: P147
+      fonts:
+        - asset: assets/fonts/p147.otf
+
+    - family: P148
+      fonts:
+        - asset: assets/fonts/p148.otf
+
+    - family: P149
+      fonts:
+        - asset: assets/fonts/p149.otf
+
+    - family: P150
+      fonts:
+        - asset: assets/fonts/p150.otf
+
+    - family: P151
+      fonts:
+        - asset: assets/fonts/p151.otf
+
+    - family: P152
+      fonts:
+        - asset: assets/fonts/p152.otf
+
+    - family: P153
+      fonts:
+        - asset: assets/fonts/p153.otf
+
+    - family: P154
+      fonts:
+        - asset: assets/fonts/p154.otf
+
+    - family: P155
+      fonts:
+        - asset: assets/fonts/p155.otf
+
+    - family: P156
+      fonts:
+        - asset: assets/fonts/p156.otf
+
+    - family: P157
+      fonts:
+        - asset: assets/fonts/p157.otf
+
+    - family: P158
+      fonts:
+        - asset: assets/fonts/p158.otf
+
+    - family: P159
+      fonts:
+        - asset: assets/fonts/p159.otf
+
+    - family: P160
+      fonts:
+        - asset: assets/fonts/p160.otf
+
+    - family: P161
+      fonts:
+        - asset: assets/fonts/p161.otf
+
+    - family: P162
+      fonts:
+        - asset: assets/fonts/p162.otf
+
+    - family: P163
+      fonts:
+        - asset: assets/fonts/p163.otf
+
+    - family: P164
+      fonts:
+        - asset: assets/fonts/p164.otf
+
+    - family: P165
+      fonts:
+        - asset: assets/fonts/p165.otf
+
+    - family: P166
+      fonts:
+        - asset: assets/fonts/p166.otf
+
+    - family: P167
+      fonts:
+        - asset: assets/fonts/p167.otf
+
+    - family: P168
+      fonts:
+        - asset: assets/fonts/p168.otf
+
+    - family: P169
+      fonts:
+        - asset: assets/fonts/p169.otf
+
+    - family: P170
+      fonts:
+        - asset: assets/fonts/p170.otf
+
+    - family: P171
+      fonts:
+        - asset: assets/fonts/p171.otf
+
+    - family: P172
+      fonts:
+        - asset: assets/fonts/p172.otf
+
+    - family: P173
+      fonts:
+        - asset: assets/fonts/p173.otf
+
+    - family: P174
+      fonts:
+        - asset: assets/fonts/p174.otf
+
+    - family: P175
+      fonts:
+        - asset: assets/fonts/p175.otf
+
+    - family: P176
+      fonts:
+        - asset: assets/fonts/p176.otf
+
+    - family: P177
+      fonts:
+        - asset: assets/fonts/p177.otf
+
+    - family: P178
+      fonts:
+        - asset: assets/fonts/p178.otf
+
+    - family: P179
+      fonts:
+        - asset: assets/fonts/p179.otf
+
+    - family: P180
+      fonts:
+        - asset: assets/fonts/p180.otf
+
+    - family: P181
+      fonts:
+        - asset: assets/fonts/p181.otf
+
+    - family: P182
+      fonts:
+        - asset: assets/fonts/p182.otf
+
+    - family: P183
+      fonts:
+        - asset: assets/fonts/p183.otf
+
+    - family: P184
+      fonts:
+        - asset: assets/fonts/p184.otf
+
+    - family: P185
+      fonts:
+        - asset: assets/fonts/p185.otf
+
+    - family: P186
+      fonts:
+        - asset: assets/fonts/p186.otf
+
+    - family: P187
+      fonts:
+        - asset: assets/fonts/p187.otf
+
+    - family: P188
+      fonts:
+        - asset: assets/fonts/p188.otf
+
+    - family: P189
+      fonts:
+        - asset: assets/fonts/p189.otf
+
+    - family: P190
+      fonts:
+        - asset: assets/fonts/p190.otf
+
+    - family: P191
+      fonts:
+        - asset: assets/fonts/p191.otf
+
+    - family: P192
+      fonts:
+        - asset: assets/fonts/p192.otf
+
+    - family: P193
+      fonts:
+        - asset: assets/fonts/p193.otf
+
+    - family: P194
+      fonts:
+        - asset: assets/fonts/p194.otf
+
+    - family: P195
+      fonts:
+        - asset: assets/fonts/p195.otf
+
+    - family: P196
+      fonts:
+        - asset: assets/fonts/p196.otf
+
+    - family: P197
+      fonts:
+        - asset: assets/fonts/p197.otf
+
+    - family: P198
+      fonts:
+        - asset: assets/fonts/p198.otf
+
+    - family: P199
+      fonts:
+        - asset: assets/fonts/p199.otf
+
+    - family: P200
+      fonts:
+        - asset: assets/fonts/p200.otf
+
+    - family: P201
+      fonts:
+        - asset: assets/fonts/p201.otf
+
+    - family: P202
+      fonts:
+        - asset: assets/fonts/p202.otf
+
+    - family: P203
+      fonts:
+        - asset: assets/fonts/p203.otf
+
+    - family: P204
+      fonts:
+        - asset: assets/fonts/p204.otf
+
+    - family: P205
+      fonts:
+        - asset: assets/fonts/p205.otf
+
+    - family: P206
+      fonts:
+        - asset: assets/fonts/p206.otf
+
+    - family: P207
+      fonts:
+        - asset: assets/fonts/p207.otf
+
+    - family: P208
+      fonts:
+        - asset: assets/fonts/p208.otf
+
+    - family: P209
+      fonts:
+        - asset: assets/fonts/p209.otf
+
+    - family: P210
+      fonts:
+        - asset: assets/fonts/p210.otf
+
+    - family: P211
+      fonts:
+        - asset: assets/fonts/p211.otf
+
+    - family: P212
+      fonts:
+        - asset: assets/fonts/p212.otf
+
+    - family: P213
+      fonts:
+        - asset: assets/fonts/p213.otf
+
+    - family: P214
+      fonts:
+        - asset: assets/fonts/p214.otf
+
+    - family: P215
+      fonts:
+        - asset: assets/fonts/p215.otf
+
+    - family: P216
+      fonts:
+        - asset: assets/fonts/p216.otf
+
+    - family: P217
+      fonts:
+        - asset: assets/fonts/p217.otf
+
+    - family: P218
+      fonts:
+        - asset: assets/fonts/p218.otf
+
+    - family: P219
+      fonts:
+        - asset: assets/fonts/p219.otf
+
+    - family: P220
+      fonts:
+        - asset: assets/fonts/p220.otf
+
+    - family: P221
+      fonts:
+        - asset: assets/fonts/p221.otf
+
+    - family: P222
+      fonts:
+        - asset: assets/fonts/p222.otf
+
+    - family: P223
+      fonts:
+        - asset: assets/fonts/p223.otf
+
+    - family: P224
+      fonts:
+        - asset: assets/fonts/p224.otf
+
+    - family: P225
+      fonts:
+        - asset: assets/fonts/p225.otf
+
+    - family: P226
+      fonts:
+        - asset: assets/fonts/p226.otf
+
+    - family: P227
+      fonts:
+        - asset: assets/fonts/p227.otf
+
+    - family: P228
+      fonts:
+        - asset: assets/fonts/p228.otf
+
+    - family: P229
+      fonts:
+        - asset: assets/fonts/p229.otf
+
+    - family: P230
+      fonts:
+        - asset: assets/fonts/p230.otf
+
+    - family: P231
+      fonts:
+        - asset: assets/fonts/p231.otf
+
+    - family: P232
+      fonts:
+        - asset: assets/fonts/p232.otf
+
+    - family: P233
+      fonts:
+        - asset: assets/fonts/p233.otf
+
+    - family: P234
+      fonts:
+        - asset: assets/fonts/p234.otf
+
+    - family: P235
+      fonts:
+        - asset: assets/fonts/p235.otf
+
+    - family: P236
+      fonts:
+        - asset: assets/fonts/p236.otf
+
+    - family: P237
+      fonts:
+        - asset: assets/fonts/p237.otf
+
+    - family: P238
+      fonts:
+        - asset: assets/fonts/p238.otf
+
+    - family: P239
+      fonts:
+        - asset: assets/fonts/p239.otf
+
+    - family: P240
+      fonts:
+        - asset: assets/fonts/p240.otf
+
+    - family: P241
+      fonts:
+        - asset: assets/fonts/p241.otf
+
+    - family: P242
+      fonts:
+        - asset: assets/fonts/p242.otf
+
+    - family: P243
+      fonts:
+        - asset: assets/fonts/p243.otf
+
+    - family: P244
+      fonts:
+        - asset: assets/fonts/p244.otf
+
+    - family: P245
+      fonts:
+        - asset: assets/fonts/p245.otf
+
+    - family: P246
+      fonts:
+        - asset: assets/fonts/p246.otf
+
+    - family: P247
+      fonts:
+        - asset: assets/fonts/p247.otf
+
+    - family: P248
+      fonts:
+        - asset: assets/fonts/p248.otf
+
+    - family: P249
+      fonts:
+        - asset: assets/fonts/p249.otf
+
+    - family: P250
+      fonts:
+        - asset: assets/fonts/p250.otf
+
+    - family: P251
+      fonts:
+        - asset: assets/fonts/p251.otf
+
+    - family: P252
+      fonts:
+        - asset: assets/fonts/p252.otf
+
+    - family: P253
+      fonts:
+        - asset: assets/fonts/p253.otf
+
+    - family: P254
+      fonts:
+        - asset: assets/fonts/p254.otf
+
+    - family: P255
+      fonts:
+        - asset: assets/fonts/p255.otf
+
+    - family: P256
+      fonts:
+        - asset: assets/fonts/p256.otf
+
+    - family: P257
+      fonts:
+        - asset: assets/fonts/p257.otf
+
+    - family: P258
+      fonts:
+        - asset: assets/fonts/p258.otf
+
+    - family: P259
+      fonts:
+        - asset: assets/fonts/p259.otf
+
+    - family: P260
+      fonts:
+        - asset: assets/fonts/p260.otf
+
+    - family: P261
+      fonts:
+        - asset: assets/fonts/p261.otf
+
+    - family: P262
+      fonts:
+        - asset: assets/fonts/p262.otf
+
+    - family: P263
+      fonts:
+        - asset: assets/fonts/p263.otf
+
+    - family: P264
+      fonts:
+        - asset: assets/fonts/p264.otf
+
+    - family: P265
+      fonts:
+        - asset: assets/fonts/p265.otf
+
+    - family: P266
+      fonts:
+        - asset: assets/fonts/p266.otf
+
+    - family: P267
+      fonts:
+        - asset: assets/fonts/p267.otf
+
+    - family: P268
+      fonts:
+        - asset: assets/fonts/p268.otf
+
+    - family: P269
+      fonts:
+        - asset: assets/fonts/p269.otf
+
+    - family: P270
+      fonts:
+        - asset: assets/fonts/p270.otf
+
+    - family: P271
+      fonts:
+        - asset: assets/fonts/p271.otf
+
+    - family: P272
+      fonts:
+        - asset: assets/fonts/p272.otf
+
+    - family: P273
+      fonts:
+        - asset: assets/fonts/p273.otf
+
+    - family: P274
+      fonts:
+        - asset: assets/fonts/p274.otf
+
+    - family: P275
+      fonts:
+        - asset: assets/fonts/p275.otf
+
+    - family: P276
+      fonts:
+        - asset: assets/fonts/p276.otf
+
+    - family: P277
+      fonts:
+        - asset: assets/fonts/p277.otf
+
+    - family: P278
+      fonts:
+        - asset: assets/fonts/p278.otf
+
+    - family: P279
+      fonts:
+        - asset: assets/fonts/p279.otf
+
+    - family: P280
+      fonts:
+        - asset: assets/fonts/p280.otf
+
+    - family: P281
+      fonts:
+        - asset: assets/fonts/p281.otf
+
+    - family: P282
+      fonts:
+        - asset: assets/fonts/p282.otf
+
     - family: P283
       fonts:
-        - asset: assets/fonts/p283.ttf
+        - asset: assets/fonts/p283.otf
+
+    - family: P284
+      fonts:
+        - asset: assets/fonts/p284.otf
+
+    - family: P285
+      fonts:
+        - asset: assets/fonts/p285.otf
+
+    - family: P286
+      fonts:
+        - asset: assets/fonts/p286.otf
+
+    - family: P287
+      fonts:
+        - asset: assets/fonts/p287.otf
+
+    - family: P288
+      fonts:
+        - asset: assets/fonts/p288.otf
+
+    - family: P289
+      fonts:
+        - asset: assets/fonts/p289.otf
+
+    - family: P290
+      fonts:
+        - asset: assets/fonts/p290.otf
+
+    - family: P291
+      fonts:
+        - asset: assets/fonts/p291.otf
+
+    - family: P292
+      fonts:
+        - asset: assets/fonts/p292.otf
+
+    - family: P293
+      fonts:
+        - asset: assets/fonts/p293.otf
+
+    - family: P294
+      fonts:
+        - asset: assets/fonts/p294.otf
+
+    - family: P295
+      fonts:
+        - asset: assets/fonts/p295.otf
+
+    - family: P296
+      fonts:
+        - asset: assets/fonts/p296.otf
+
+    - family: P297
+      fonts:
+        - asset: assets/fonts/p297.otf
+
+    - family: P298
+      fonts:
+        - asset: assets/fonts/p298.otf
+
+    - family: P299
+      fonts:
+        - asset: assets/fonts/p299.otf
+
+    - family: P300
+      fonts:
+        - asset: assets/fonts/p300.otf
+
+    - family: P301
+      fonts:
+        - asset: assets/fonts/p301.otf
+
+    - family: P302
+      fonts:
+        - asset: assets/fonts/p302.otf
+
+    - family: P303
+      fonts:
+        - asset: assets/fonts/p303.otf
+
+    - family: P304
+      fonts:
+        - asset: assets/fonts/p304.otf
 
     - family: P305
       fonts:
-        - asset: assets/fonts/p305.ttf
+        - asset: assets/fonts/p305.otf
+
+    - family: P306
+      fonts:
+        - asset: assets/fonts/p306.otf
+
+    - family: P307
+      fonts:
+        - asset: assets/fonts/p307.otf
+
+    - family: P308
+      fonts:
+        - asset: assets/fonts/p308.otf
+
+    - family: P309
+      fonts:
+        - asset: assets/fonts/p309.otf
+
+    - family: P310
+      fonts:
+        - asset: assets/fonts/p310.otf
+
+    - family: P311
+      fonts:
+        - asset: assets/fonts/p311.otf
+
+    - family: P312
+      fonts:
+        - asset: assets/fonts/p312.otf
+
+    - family: P313
+      fonts:
+        - asset: assets/fonts/p313.otf
+
+    - family: P314
+      fonts:
+        - asset: assets/fonts/p314.otf
+
+    - family: P315
+      fonts:
+        - asset: assets/fonts/p315.otf
+
+    - family: P316
+      fonts:
+        - asset: assets/fonts/p316.otf
+
+    - family: P317
+      fonts:
+        - asset: assets/fonts/p317.otf
+
+    - family: P318
+      fonts:
+        - asset: assets/fonts/p318.otf
+
+    - family: P319
+      fonts:
+        - asset: assets/fonts/p319.otf
+
+    - family: P320
+      fonts:
+        - asset: assets/fonts/p320.otf
+
+    - family: P321
+      fonts:
+        - asset: assets/fonts/p321.otf
+
+    - family: P322
+      fonts:
+        - asset: assets/fonts/p322.otf
+
+    - family: P323
+      fonts:
+        - asset: assets/fonts/p323.otf
+
+    - family: P324
+      fonts:
+        - asset: assets/fonts/p324.otf
+
+    - family: P325
+      fonts:
+        - asset: assets/fonts/p325.otf
+
+    - family: P326
+      fonts:
+        - asset: assets/fonts/p326.otf
+
+    - family: P327
+      fonts:
+        - asset: assets/fonts/p327.otf
+
+    - family: P328
+      fonts:
+        - asset: assets/fonts/p328.otf
+
+    - family: P329
+      fonts:
+        - asset: assets/fonts/p329.otf
+
+    - family: P330
+      fonts:
+        - asset: assets/fonts/p330.otf
+
+    - family: P331
+      fonts:
+        - asset: assets/fonts/p331.otf
+
+    - family: P332
+      fonts:
+        - asset: assets/fonts/p332.otf
+
+    - family: P333
+      fonts:
+        - asset: assets/fonts/p333.otf
+
+    - family: P334
+      fonts:
+        - asset: assets/fonts/p334.otf
+
+    - family: P335
+      fonts:
+        - asset: assets/fonts/p335.otf
+
+    - family: P336
+      fonts:
+        - asset: assets/fonts/p336.otf
+
+    - family: P337
+      fonts:
+        - asset: assets/fonts/p337.otf
+
+    - family: P338
+      fonts:
+        - asset: assets/fonts/p338.otf
+
+    - family: P339
+      fonts:
+        - asset: assets/fonts/p339.otf
+
+    - family: P340
+      fonts:
+        - asset: assets/fonts/p340.otf
+
+    - family: P341
+      fonts:
+        - asset: assets/fonts/p341.otf
+
+    - family: P342
+      fonts:
+        - asset: assets/fonts/p342.otf
+
+    - family: P343
+      fonts:
+        - asset: assets/fonts/p343.otf
+
+    - family: P344
+      fonts:
+        - asset: assets/fonts/p344.otf
+
+    - family: P345
+      fonts:
+        - asset: assets/fonts/p345.otf
+
+    - family: P346
+      fonts:
+        - asset: assets/fonts/p346.otf
+
+    - family: P347
+      fonts:
+        - asset: assets/fonts/p347.otf
+
+    - family: P348
+      fonts:
+        - asset: assets/fonts/p348.otf
+
+    - family: P349
+      fonts:
+        - asset: assets/fonts/p349.otf
+
+    - family: P350
+      fonts:
+        - asset: assets/fonts/p350.otf
+
+    - family: P351
+      fonts:
+        - asset: assets/fonts/p351.otf
+
+    - family: P352
+      fonts:
+        - asset: assets/fonts/p352.otf
+
+    - family: P353
+      fonts:
+        - asset: assets/fonts/p353.otf
+
+    - family: P354
+      fonts:
+        - asset: assets/fonts/p354.otf
+
+    - family: P355
+      fonts:
+        - asset: assets/fonts/p355.otf
+
+    - family: P356
+      fonts:
+        - asset: assets/fonts/p356.otf
+
+    - family: P357
+      fonts:
+        - asset: assets/fonts/p357.otf
+
+    - family: P358
+      fonts:
+        - asset: assets/fonts/p358.otf
+
+    - family: P359
+      fonts:
+        - asset: assets/fonts/p359.otf
+
+    - family: P360
+      fonts:
+        - asset: assets/fonts/p360.otf
+
+    - family: P361
+      fonts:
+        - asset: assets/fonts/p361.otf
+
+    - family: P362
+      fonts:
+        - asset: assets/fonts/p362.otf
+
+    - family: P363
+      fonts:
+        - asset: assets/fonts/p363.otf
+
+    - family: P364
+      fonts:
+        - asset: assets/fonts/p364.otf
+
+    - family: P365
+      fonts:
+        - asset: assets/fonts/p365.otf
+
+    - family: P366
+      fonts:
+        - asset: assets/fonts/p366.otf
+
+    - family: P367
+      fonts:
+        - asset: assets/fonts/p367.otf
+
+    - family: P368
+      fonts:
+        - asset: assets/fonts/p368.otf
+
+    - family: P369
+      fonts:
+        - asset: assets/fonts/p369.otf
+
+    - family: P370
+      fonts:
+        - asset: assets/fonts/p370.otf
+
+    - family: P371
+      fonts:
+        - asset: assets/fonts/p371.otf
+
+    - family: P372
+      fonts:
+        - asset: assets/fonts/p372.otf
+
+    - family: P373
+      fonts:
+        - asset: assets/fonts/p373.otf
+
+    - family: P374
+      fonts:
+        - asset: assets/fonts/p374.otf
+
+    - family: P375
+      fonts:
+        - asset: assets/fonts/p375.otf
+
+    - family: P376
+      fonts:
+        - asset: assets/fonts/p376.otf
+
+    - family: P377
+      fonts:
+        - asset: assets/fonts/p377.otf
+
+    - family: P378
+      fonts:
+        - asset: assets/fonts/p378.otf
+
+    - family: P379
+      fonts:
+        - asset: assets/fonts/p379.otf
+
+    - family: P380
+      fonts:
+        - asset: assets/fonts/p380.otf
+
+    - family: P381
+      fonts:
+        - asset: assets/fonts/p381.otf
+
+    - family: P382
+      fonts:
+        - asset: assets/fonts/p382.otf
+
+    - family: P383
+      fonts:
+        - asset: assets/fonts/p383.otf
+
+    - family: P384
+      fonts:
+        - asset: assets/fonts/p384.otf
+
+    - family: P385
+      fonts:
+        - asset: assets/fonts/p385.otf
+
+    - family: P386
+      fonts:
+        - asset: assets/fonts/p386.otf
+
+    - family: P387
+      fonts:
+        - asset: assets/fonts/p387.otf
+
+    - family: P388
+      fonts:
+        - asset: assets/fonts/p388.otf
+
+    - family: P389
+      fonts:
+        - asset: assets/fonts/p389.otf
+
+    - family: P390
+      fonts:
+        - asset: assets/fonts/p390.otf
+
+    - family: P391
+      fonts:
+        - asset: assets/fonts/p391.otf
+
+    - family: P392
+      fonts:
+        - asset: assets/fonts/p392.otf
+
+    - family: P393
+      fonts:
+        - asset: assets/fonts/p393.otf
+
+    - family: P394
+      fonts:
+        - asset: assets/fonts/p394.otf
+
+    - family: P395
+      fonts:
+        - asset: assets/fonts/p395.otf
+
+    - family: P396
+      fonts:
+        - asset: assets/fonts/p396.otf
+
+    - family: P397
+      fonts:
+        - asset: assets/fonts/p397.otf
+
+    - family: P398
+      fonts:
+        - asset: assets/fonts/p398.otf
+
+    - family: P399
+      fonts:
+        - asset: assets/fonts/p399.otf
+
+    - family: P400
+      fonts:
+        - asset: assets/fonts/p400.otf
+
+    - family: P401
+      fonts:
+        - asset: assets/fonts/p401.otf
+
+    - family: P402
+      fonts:
+        - asset: assets/fonts/p402.otf
+
+    - family: P403
+      fonts:
+        - asset: assets/fonts/p403.otf
+
+    - family: P404
+      fonts:
+        - asset: assets/fonts/p404.otf
+
+    - family: P405
+      fonts:
+        - asset: assets/fonts/p405.otf
+
+    - family: P406
+      fonts:
+        - asset: assets/fonts/p406.otf
+
+    - family: P407
+      fonts:
+        - asset: assets/fonts/p407.otf
+
+    - family: P408
+      fonts:
+        - asset: assets/fonts/p408.otf
+
+    - family: P409
+      fonts:
+        - asset: assets/fonts/p409.otf
+
+    - family: P410
+      fonts:
+        - asset: assets/fonts/p410.otf
+
+    - family: P411
+      fonts:
+        - asset: assets/fonts/p411.otf
+
+    - family: P412
+      fonts:
+        - asset: assets/fonts/p412.otf
+
+    - family: P413
+      fonts:
+        - asset: assets/fonts/p413.otf
+
+    - family: P414
+      fonts:
+        - asset: assets/fonts/p414.otf
+
+    - family: P415
+      fonts:
+        - asset: assets/fonts/p415.otf
+
+    - family: P416
+      fonts:
+        - asset: assets/fonts/p416.otf
+
+    - family: P417
+      fonts:
+        - asset: assets/fonts/p417.otf
+
+    - family: P418
+      fonts:
+        - asset: assets/fonts/p418.otf
+
+    - family: P419
+      fonts:
+        - asset: assets/fonts/p419.otf
+
+    - family: P420
+      fonts:
+        - asset: assets/fonts/p420.otf
+
+    - family: P421
+      fonts:
+        - asset: assets/fonts/p421.otf
+
+    - family: P422
+      fonts:
+        - asset: assets/fonts/p422.otf
+
+    - family: P423
+      fonts:
+        - asset: assets/fonts/p423.otf
+
+    - family: P424
+      fonts:
+        - asset: assets/fonts/p424.otf
+
+    - family: P425
+      fonts:
+        - asset: assets/fonts/p425.otf
+
+    - family: P426
+      fonts:
+        - asset: assets/fonts/p426.otf
+
+    - family: P427
+      fonts:
+        - asset: assets/fonts/p427.otf
+
+    - family: P428
+      fonts:
+        - asset: assets/fonts/p428.otf
+
+    - family: P429
+      fonts:
+        - asset: assets/fonts/p429.otf
+
+    - family: P430
+      fonts:
+        - asset: assets/fonts/p430.otf
+
+    - family: P431
+      fonts:
+        - asset: assets/fonts/p431.otf
+
+    - family: P432
+      fonts:
+        - asset: assets/fonts/p432.otf
+
+    - family: P433
+      fonts:
+        - asset: assets/fonts/p433.otf
+
+    - family: P434
+      fonts:
+        - asset: assets/fonts/p434.otf
+
+    - family: P435
+      fonts:
+        - asset: assets/fonts/p435.otf
+
+    - family: P436
+      fonts:
+        - asset: assets/fonts/p436.otf
+
+    - family: P437
+      fonts:
+        - asset: assets/fonts/p437.otf
+
+    - family: P438
+      fonts:
+        - asset: assets/fonts/p438.otf
+
+    - family: P439
+      fonts:
+        - asset: assets/fonts/p439.otf
+
+    - family: P440
+      fonts:
+        - asset: assets/fonts/p440.otf
+
+    - family: P441
+      fonts:
+        - asset: assets/fonts/p441.otf
+
+    - family: P442
+      fonts:
+        - asset: assets/fonts/p442.otf
+
+    - family: P443
+      fonts:
+        - asset: assets/fonts/p443.otf
+
+    - family: P444
+      fonts:
+        - asset: assets/fonts/p444.otf
+
+    - family: P445
+      fonts:
+        - asset: assets/fonts/p445.otf
+
+    - family: P446
+      fonts:
+        - asset: assets/fonts/p446.otf
+
+    - family: P447
+      fonts:
+        - asset: assets/fonts/p447.otf
+
+    - family: P448
+      fonts:
+        - asset: assets/fonts/p448.otf
+
+    - family: P449
+      fonts:
+        - asset: assets/fonts/p449.otf
+
+    - family: P450
+      fonts:
+        - asset: assets/fonts/p450.otf
+
+    - family: P451
+      fonts:
+        - asset: assets/fonts/p451.otf
+
+    - family: P452
+      fonts:
+        - asset: assets/fonts/p452.otf
+
+    - family: P453
+      fonts:
+        - asset: assets/fonts/p453.otf
+
+    - family: P454
+      fonts:
+        - asset: assets/fonts/p454.otf
+
+    - family: P455
+      fonts:
+        - asset: assets/fonts/p455.otf
+
+    - family: P456
+      fonts:
+        - asset: assets/fonts/p456.otf
+
+    - family: P457
+      fonts:
+        - asset: assets/fonts/p457.otf
+
+    - family: P458
+      fonts:
+        - asset: assets/fonts/p458.otf
+
+    - family: P459
+      fonts:
+        - asset: assets/fonts/p459.otf
+
+    - family: P460
+      fonts:
+        - asset: assets/fonts/p460.otf
+
+    - family: P461
+      fonts:
+        - asset: assets/fonts/p461.otf
+
+    - family: P462
+      fonts:
+        - asset: assets/fonts/p462.otf
+
+    - family: P463
+      fonts:
+        - asset: assets/fonts/p463.otf
+
+    - family: P464
+      fonts:
+        - asset: assets/fonts/p464.otf
+
+    - family: P465
+      fonts:
+        - asset: assets/fonts/p465.otf
+
+    - family: P466
+      fonts:
+        - asset: assets/fonts/p466.otf
+
+    - family: P467
+      fonts:
+        - asset: assets/fonts/p467.otf
+
+    - family: P468
+      fonts:
+        - asset: assets/fonts/p468.otf
+
+    - family: P469
+      fonts:
+        - asset: assets/fonts/p469.otf
+
+    - family: P470
+      fonts:
+        - asset: assets/fonts/p470.otf
+
+    - family: P471
+      fonts:
+        - asset: assets/fonts/p471.otf
+
+    - family: P472
+      fonts:
+        - asset: assets/fonts/p472.otf
+
+    - family: P473
+      fonts:
+        - asset: assets/fonts/p473.otf
+
+    - family: P474
+      fonts:
+        - asset: assets/fonts/p474.otf
+
+    - family: P475
+      fonts:
+        - asset: assets/fonts/p475.otf
+
+    - family: P476
+      fonts:
+        - asset: assets/fonts/p476.otf
+
+    - family: P477
+      fonts:
+        - asset: assets/fonts/p477.otf
+
+    - family: P478
+      fonts:
+        - asset: assets/fonts/p478.otf
+
+    - family: P479
+      fonts:
+        - asset: assets/fonts/p479.otf
+
+    - family: P480
+      fonts:
+        - asset: assets/fonts/p480.otf
+
+    - family: P481
+      fonts:
+        - asset: assets/fonts/p481.otf
+
+    - family: P482
+      fonts:
+        - asset: assets/fonts/p482.otf
+
+    - family: P483
+      fonts:
+        - asset: assets/fonts/p483.otf
+
+    - family: P484
+      fonts:
+        - asset: assets/fonts/p484.otf
+
+    - family: P485
+      fonts:
+        - asset: assets/fonts/p485.otf
+
+    - family: P486
+      fonts:
+        - asset: assets/fonts/p486.otf
+
+    - family: P487
+      fonts:
+        - asset: assets/fonts/p487.otf
+
+    - family: P488
+      fonts:
+        - asset: assets/fonts/p488.otf
+
+    - family: P489
+      fonts:
+        - asset: assets/fonts/p489.otf
+
+    - family: P490
+      fonts:
+        - asset: assets/fonts/p490.otf
+
+    - family: P491
+      fonts:
+        - asset: assets/fonts/p491.otf
+
+    - family: P492
+      fonts:
+        - asset: assets/fonts/p492.otf
+
+    - family: P493
+      fonts:
+        - asset: assets/fonts/p493.otf
+
+    - family: P494
+      fonts:
+        - asset: assets/fonts/p494.otf
+
+    - family: P495
+      fonts:
+        - asset: assets/fonts/p495.otf
+
+    - family: P496
+      fonts:
+        - asset: assets/fonts/p496.otf
+
+    - family: P497
+      fonts:
+        - asset: assets/fonts/p497.otf
+
+    - family: P498
+      fonts:
+        - asset: assets/fonts/p498.otf
+
+    - family: P499
+      fonts:
+        - asset: assets/fonts/p499.otf
+
+    - family: P500
+      fonts:
+        - asset: assets/fonts/p500.otf
+
+    - family: P501
+      fonts:
+        - asset: assets/fonts/p501.otf
+
+    - family: P502
+      fonts:
+        - asset: assets/fonts/p502.otf
+
+    - family: P503
+      fonts:
+        - asset: assets/fonts/p503.otf
+
+    - family: P504
+      fonts:
+        - asset: assets/fonts/p504.otf
+
+    - family: P505
+      fonts:
+        - asset: assets/fonts/p505.otf
+
+    - family: P506
+      fonts:
+        - asset: assets/fonts/p506.otf
+
+    - family: P507
+      fonts:
+        - asset: assets/fonts/p507.otf
+
+    - family: P508
+      fonts:
+        - asset: assets/fonts/p508.otf
+
+    - family: P509
+      fonts:
+        - asset: assets/fonts/p509.otf
+
+    - family: P510
+      fonts:
+        - asset: assets/fonts/p510.otf
+
+    - family: P511
+      fonts:
+        - asset: assets/fonts/p511.otf
+
+    - family: P512
+      fonts:
+        - asset: assets/fonts/p512.otf
+
+    - family: P513
+      fonts:
+        - asset: assets/fonts/p513.otf
+
+    - family: P514
+      fonts:
+        - asset: assets/fonts/p514.otf
+
+    - family: P515
+      fonts:
+        - asset: assets/fonts/p515.otf
+
+    - family: P516
+      fonts:
+        - asset: assets/fonts/p516.otf
+
+    - family: P517
+      fonts:
+        - asset: assets/fonts/p517.otf
+
+    - family: P518
+      fonts:
+        - asset: assets/fonts/p518.otf
+
+    - family: P519
+      fonts:
+        - asset: assets/fonts/p519.otf
+
+    - family: P520
+      fonts:
+        - asset: assets/fonts/p520.otf
+
+    - family: P521
+      fonts:
+        - asset: assets/fonts/p521.otf
+
+    - family: P522
+      fonts:
+        - asset: assets/fonts/p522.otf
+
+    - family: P523
+      fonts:
+        - asset: assets/fonts/p523.otf
+
+    - family: P524
+      fonts:
+        - asset: assets/fonts/p524.otf
+
+    - family: P525
+      fonts:
+        - asset: assets/fonts/p525.otf
+
+    - family: P526
+      fonts:
+        - asset: assets/fonts/p526.otf
+
+    - family: P527
+      fonts:
+        - asset: assets/fonts/p527.otf
+
+    - family: P528
+      fonts:
+        - asset: assets/fonts/p528.otf
+
+    - family: P529
+      fonts:
+        - asset: assets/fonts/p529.otf
+
+    - family: P530
+      fonts:
+        - asset: assets/fonts/p530.otf
+
+    - family: P531
+      fonts:
+        - asset: assets/fonts/p531.otf
+
+    - family: P532
+      fonts:
+        - asset: assets/fonts/p532.otf
+
+    - family: P533
+      fonts:
+        - asset: assets/fonts/p533.otf
+
+    - family: P534
+      fonts:
+        - asset: assets/fonts/p534.otf
+
+    - family: P535
+      fonts:
+        - asset: assets/fonts/p535.otf
+
+    - family: P536
+      fonts:
+        - asset: assets/fonts/p536.otf
+
+    - family: P537
+      fonts:
+        - asset: assets/fonts/p537.otf
+
+    - family: P538
+      fonts:
+        - asset: assets/fonts/p538.otf
+
+    - family: P539
+      fonts:
+        - asset: assets/fonts/p539.otf
+
+    - family: P540
+      fonts:
+        - asset: assets/fonts/p540.otf
+
+    - family: P541
+      fonts:
+        - asset: assets/fonts/p541.otf
+
+    - family: P542
+      fonts:
+        - asset: assets/fonts/p542.otf
+
+    - family: P543
+      fonts:
+        - asset: assets/fonts/p543.otf
+
+    - family: P544
+      fonts:
+        - asset: assets/fonts/p544.otf
+
+    - family: P545
+      fonts:
+        - asset: assets/fonts/p545.otf
+
+    - family: P546
+      fonts:
+        - asset: assets/fonts/p546.otf
+
+    - family: P547
+      fonts:
+        - asset: assets/fonts/p547.otf
+
+    - family: P548
+      fonts:
+        - asset: assets/fonts/p548.otf
+
+    - family: P549
+      fonts:
+        - asset: assets/fonts/p549.otf
+
+    - family: P550
+      fonts:
+        - asset: assets/fonts/p550.otf
+
+    - family: P551
+      fonts:
+        - asset: assets/fonts/p551.otf
+
+    - family: P552
+      fonts:
+        - asset: assets/fonts/p552.otf
+
+    - family: P553
+      fonts:
+        - asset: assets/fonts/p553.otf
+
+    - family: P554
+      fonts:
+        - asset: assets/fonts/p554.otf
+
+    - family: P555
+      fonts:
+        - asset: assets/fonts/p555.otf
+
+    - family: P556
+      fonts:
+        - asset: assets/fonts/p556.otf
+
+    - family: P557
+      fonts:
+        - asset: assets/fonts/p557.otf
+
+    - family: P558
+      fonts:
+        - asset: assets/fonts/p558.otf
+
+    - family: P559
+      fonts:
+        - asset: assets/fonts/p559.otf
+
+    - family: P560
+      fonts:
+        - asset: assets/fonts/p560.otf
+
+    - family: P561
+      fonts:
+        - asset: assets/fonts/p561.otf
+
+    - family: P562
+      fonts:
+        - asset: assets/fonts/p562.otf
+
+    - family: P563
+      fonts:
+        - asset: assets/fonts/p563.otf
+
+    - family: P564
+      fonts:
+        - asset: assets/fonts/p564.otf
+
+    - family: P565
+      fonts:
+        - asset: assets/fonts/p565.otf
+
+    - family: P566
+      fonts:
+        - asset: assets/fonts/p566.otf
+
+    - family: P567
+      fonts:
+        - asset: assets/fonts/p567.otf
+
+    - family: P568
+      fonts:
+        - asset: assets/fonts/p568.otf
+
+    - family: P569
+      fonts:
+        - asset: assets/fonts/p569.otf
+
+    - family: P570
+      fonts:
+        - asset: assets/fonts/p570.otf
+
+    - family: P571
+      fonts:
+        - asset: assets/fonts/p571.otf
+
+    - family: P572
+      fonts:
+        - asset: assets/fonts/p572.otf
+
+    - family: P573
+      fonts:
+        - asset: assets/fonts/p573.otf
+
+    - family: P574
+      fonts:
+        - asset: assets/fonts/p574.otf
+
+    - family: P575
+      fonts:
+        - asset: assets/fonts/p575.otf
+
+    - family: P576
+      fonts:
+        - asset: assets/fonts/p576.otf
+
+    - family: P577
+      fonts:
+        - asset: assets/fonts/p577.otf
+
+    - family: P578
+      fonts:
+        - asset: assets/fonts/p578.otf
+
+    - family: P579
+      fonts:
+        - asset: assets/fonts/p579.otf
+
+    - family: P580
+      fonts:
+        - asset: assets/fonts/p580.otf
+
+    - family: P581
+      fonts:
+        - asset: assets/fonts/p581.otf
+
+    - family: P582
+      fonts:
+        - asset: assets/fonts/p582.otf
+
+    - family: P583
+      fonts:
+        - asset: assets/fonts/p583.otf
+
+    - family: P584
+      fonts:
+        - asset: assets/fonts/p584.otf
+
+    - family: P585
+      fonts:
+        - asset: assets/fonts/p585.otf
+
+    - family: P586
+      fonts:
+        - asset: assets/fonts/p586.otf
+
+    - family: P587
+      fonts:
+        - asset: assets/fonts/p587.otf
+
+    - family: P588
+      fonts:
+        - asset: assets/fonts/p588.otf
+
+    - family: P589
+      fonts:
+        - asset: assets/fonts/p589.otf
+
+    - family: P590
+      fonts:
+        - asset: assets/fonts/p590.otf
+
+    - family: P591
+      fonts:
+        - asset: assets/fonts/p591.otf
+
+    - family: P592
+      fonts:
+        - asset: assets/fonts/p592.otf
+
+    - family: P593
+      fonts:
+        - asset: assets/fonts/p593.otf
+
+    - family: P594
+      fonts:
+        - asset: assets/fonts/p594.otf
+
+    - family: P595
+      fonts:
+        - asset: assets/fonts/p595.otf
+
+    - family: P596
+      fonts:
+        - asset: assets/fonts/p596.otf
+
+    - family: P597
+      fonts:
+        - asset: assets/fonts/p597.otf
+
+    - family: P598
+      fonts:
+        - asset: assets/fonts/p598.otf
+
+    - family: P599
+      fonts:
+        - asset: assets/fonts/p599.otf
+
+    - family: P600
+      fonts:
+        - asset: assets/fonts/p600.otf
+
+    - family: P601
+      fonts:
+        - asset: assets/fonts/p601.otf
+
+    - family: P602
+      fonts:
+        - asset: assets/fonts/p602.otf
+
+    - family: P603
+      fonts:
+        - asset: assets/fonts/p603.otf
+
+    - family: P604
+      fonts:
+        - asset: assets/fonts/p604.otf
 
     - family: Bismillah
       fonts:
         - asset: assets/fonts/bismillah.ttf
-
-    - family: Quran
-      fonts:
-        - asset: assets/fonts/quran_common.ttf
 
     - family: Uthmanic
       fonts:
