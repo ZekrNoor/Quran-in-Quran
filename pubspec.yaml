@@ -63,8 +63,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/al_quran_al_karim.png
-    - assets/images/desert.jpg
+    - assets/images/
+    # - assets/images/al_quran_al_karim.png
+    # - assets/images/desert.jpg
+    # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -1200,6 +1202,13 @@ flutter:
     - family: P282
       fonts:
         - asset: assets/fonts/p282.otf
+    - family: QuranSurah1
+      fonts:
+        - asset: assets/fonts/QuranSurah1.ttf
+
+    - family: QuranSurah2
+      fonts:
+        - asset: assets/fonts/QuranSurah2.ttf
 
     - family: P283
       fonts:
