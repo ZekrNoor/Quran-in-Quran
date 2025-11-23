@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:quran_in_quran/local_paths.dart';
 
 class Bookmark {
   Bookmark({this.type = '', this.value = '', this.id = 0, this.userId = 0});
@@ -27,12 +28,6 @@ class Credentials {
 }
 
 class ZekrnoorClient {
-  static final instanceUrl = 'https://zekrnoor.liara.run';
-  static final loginEndpoint = Uri.parse('$instanceUrl/auth/login');
-  static final bookmarksEndpoint = Uri.parse('$instanceUrl/bookmarks/');
-  static final appDir = 'qiq';
-  static final userCredPath = '$appDir/user.cred';
-
   bool _isAuthenticated = false;
   bool _isAuthenticating = false;
 
@@ -45,7 +40,7 @@ class ZekrnoorClient {
     }
 
     final response = await http.get(
-      bookmarksEndpoint,
+      LocalPaths.bookmarksEndpoint,
       headers: <String, String>{
         'accept': 'application/json',
         'Authorization': 'Bearer ${_accessToken!}',
@@ -92,7 +87,7 @@ class ZekrnoorClient {
 
     bool isLoginOld = username == null || password == null;
     final docDirPath = (await getApplicationDocumentsDirectory()).path;
-    final credFile = File('$docDirPath/$userCredPath');
+    final credFile = File('$docDirPath/$LocalPaths.userCredPath');
 
     // check if logged in already
     if (isLoginOld) {
@@ -111,7 +106,7 @@ class ZekrnoorClient {
     }
 
     final response = await http.post(
-      loginEndpoint,
+      LocalPaths.loginEndpoint,
       headers: <String, String>{
         'accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',

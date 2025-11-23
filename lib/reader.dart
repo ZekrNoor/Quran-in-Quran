@@ -1,19 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:path_provider/path_provider.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'package:quran_in_quran/local_colors.dart';
 import 'package:quran_in_quran/local_consts.dart';
+import 'package:quran_in_quran/local_paths.dart';
 import 'package:quran_in_quran/local_strings.dart';
-
-/* range of glyphs (1 <= `from`/`to`) to be rendered for a single page of the quran */
-String glyphRange(int from, int to) {
-  return String.fromCharCodes(
-    // List.generate(to - from + 1, (index) => 0xfb50 + from + index),
-    List.generate(to - from + 1, (index) => 0xfc40 + from + index),
-  );
-}
 
 Route<void> createRouteQiQReader() {
   return PageRouteBuilder(
@@ -63,20 +61,48 @@ class QiQReaderContainer extends StatelessWidget {
   }
 }
 
-class Word extends StatelessWidget {
-  const Word(this.number, {super.key});
+extension IntExtension on int {
+  String toHindi() {
+    int number = this;
+    int numberOfDigits = 0;
 
-  final int number;
+    for (int i = 1; ; i++) {
+      number ~/= 10;
+
+      if (number == 0) {
+        numberOfDigits = i;
+        break;
+      }
+    }
+
+    number = this;
+
+    final chars = List.filled(numberOfDigits, 0);
+
+    for (int i = 0; i < numberOfDigits; i++) {
+      chars[numberOfDigits - 1 - i] = 0x06F0 + (number % 10);
+      number ~/= 10;
+    }
+
+    return String.fromCharCodes(chars);
+  }
+}
+
+class Word extends StatelessWidget {
+  const Word(this.code, this.page, {super.key});
+
+  final String code;
+  final int page;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      glyphRange(number, number),
+      code,
 
       style: TextStyle(
         color: LocalColors.quranAppText,
 
-        fontFamily: 'P283',
+        fontFamily: 'P${page.toString()}',
         fontSize: 22,
 
         height: 2.1,
@@ -86,10 +112,9 @@ class Word extends StatelessWidget {
 }
 
 class Line extends StatelessWidget {
-  const Line(this.from, this.to, {super.key});
+  const Line(this.words, {super.key});
 
-  final int from;
-  final int to;
+  final List<Word> words;
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +122,19 @@ class Line extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       textDirection: TextDirection.rtl,
 
-      children: [for (var i = from; i <= to; i++) Word(i)],
+      children: words,
     );
+  }
+}
+
+class Page extends StatelessWidget {
+  const Page(this.lines, {super.key});
+
+  final List<Line> lines;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: lines);
   }
 }
 
@@ -110,6 +146,76 @@ class QiQReader extends StatefulWidget {
 }
 
 class _QiQReaderState extends State<QiQReader> {
+  int _page = 3;
+  int _chapter = 17;
+  late Future<Page?> _loadPage;
+
+  Future<Page?> loadPage(int pageNumber) async {
+    final docDirPath = (await getApplicationDocumentsDirectory()).path;
+    final pageFile = File(
+      '$docDirPath/${LocalPaths.quranDir}/${pageNumber.toString()}.json',
+    );
+
+    if (await pageFile.exists()) {
+      final Map<String, dynamic> page = jsonDecode(
+        await pageFile.readAsString(),
+      );
+
+      final List<Line> lines = List.empty(growable: true);
+
+      lineLoop:
+      for (
+        int line = page["verses"][0]["words"][0]["line_number"],
+            verse = 0,
+            word = 0;
+        ;
+        line++
+      ) {
+        final List<Word> words = List.empty(growable: true);
+
+        verseLoop:
+        for (; ; verse++) {
+          if (page["verses"].length == verse) {
+            lines.add(Line(words));
+
+            break lineLoop;
+          }
+
+          wordLoop:
+          for (; ; word++) {
+            if (page["verses"][verse]["words"].length == word) {
+              word = 0;
+
+              break wordLoop;
+            }
+
+            if (page["verses"][verse]["words"][word]["line_number"] ==
+                (line + 1)) {
+              break verseLoop;
+            }
+
+            words.add(
+              Word(page["verses"][verse]["words"][word]["code_v2"], pageNumber),
+            );
+          }
+        }
+
+        lines.add(Line(words));
+      }
+
+      return Page(lines);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadPage = loadPage(_page);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +258,7 @@ class _QiQReaderState extends State<QiQReader> {
                     Spacer(),
 
                     Text(
-                      '۱۹ . مریم',
+                      _chapter.toHindi(),
 
                       textDirection: TextDirection.rtl,
 
@@ -175,24 +281,16 @@ class _QiQReaderState extends State<QiQReader> {
             Padding(
               padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
 
-              child: Column(
-                children: [
-                  Line(1, 12),
-                  Line(13, 22),
-                  Line(23, 31),
-                  Line(32, 41),
-                  Line(42, 51),
-                  Line(52, 61),
-                  Line(62, 69),
-                  Line(70, 78),
-                  Line(79, 89),
-                  Line(90, 99),
-                  Line(100, 110),
-                  Line(111, 123),
-                  Line(124, 134),
-                  Line(135, 144),
-                  Line(145, 155),
-                ],
+              child: FutureBuilder(
+                future: _loadPage,
+
+                builder: (BuildContext context, AsyncSnapshot<Page?> snapshot) {
+                  if (snapshot.hasData) {
+                    return snapshot.data!;
+                  } else {
+                    return SizedBox();
+                  }
+                },
               ),
             ),
 
@@ -318,12 +416,61 @@ class _QiQReaderState extends State<QiQReader> {
 
             SizedBox(height: 10.0),
 
-            CupertinoButton.filled(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CircleAvatar(
+                  backgroundColor: LocalColors.quranAppAvatarBg,
 
-              child: Text('return'),
+                  radius: LocalConsts.readerAvatarRadius,
+
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _page--;
+                        _loadPage = loadPage(_page);
+                      });
+                    },
+
+                    icon: Icon(
+                      PhosphorIconsRegular.arrowLeft,
+
+                      color: LocalColors.quranAppText,
+                      size: LocalConsts.readerAvatarSize,
+                    ),
+                  ),
+                ),
+
+                CupertinoButton.filled(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+
+                  child: Text('return'),
+                ),
+
+                CircleAvatar(
+                  backgroundColor: LocalColors.quranAppAvatarBg,
+
+                  radius: LocalConsts.readerAvatarRadius,
+
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _page++;
+                        _loadPage = loadPage(_page);
+                      });
+                    },
+
+                    icon: Icon(
+                      PhosphorIconsRegular.arrowRight,
+
+                      color: LocalColors.quranAppText,
+                      size: LocalConsts.readerAvatarSize,
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             SizedBox(height: 10),
