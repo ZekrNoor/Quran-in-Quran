@@ -11,11 +11,13 @@ class HomeMainLayout extends StatelessWidget {
     this.onProfileSelected,
     this.onSideBarMenuSelected,
     this.onResumeReading,
+    this.onSurahMenu,
   });
 
   final void Function()? onProfileSelected;
   final void Function()? onSideBarMenuSelected;
   final void Function()? onResumeReading;
+  final void Function()? onSurahMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,6 @@ class HomeMainLayout extends StatelessWidget {
       //     ),
       //   ),
       // ),
-
       child: SafeArea(
         child: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -58,7 +59,10 @@ class HomeMainLayout extends StatelessWidget {
 
               Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                child: AlQuranAlKarim(onResumeReading: onResumeReading),
+                child: AlQuranAlKarim(
+                  onResumeReading: onResumeReading,
+                  onSurahMenu: onSurahMenu,
+                ),
               ),
 
               SizedBox(height: 40),

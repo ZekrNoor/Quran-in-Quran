@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-import 'home_main_layout.dart';
-import 'profile_card.dart';
-import 'profile_overview.dart';
-import 'reader.dart';
-import 'side_bar_menu.dart';
-import 'sign_in.dart';
+import 'package:quran_in_quran/surah_menu.dart';
+import 'package:quran_in_quran/home_main_layout.dart';
+import 'package:quran_in_quran/profile_card.dart';
+import 'package:quran_in_quran/profile_overview.dart';
+import 'package:quran_in_quran/reader.dart';
+import 'package:quran_in_quran/side_bar_menu.dart';
+import 'package:quran_in_quran/sign_in.dart';
 
 class QiQHome extends StatefulWidget {
   const QiQHome({super.key});
@@ -45,6 +46,10 @@ class _QiQHomeState extends State<QiQHome> {
             onResumeReading: () {
               Navigator.of(context).push(createRouteQiQReader());
             },
+
+            onSurahMenu: () {
+              Navigator.of(context).push(createRouteQiQSurahMenu());
+            },
           ),
         ),
 
@@ -61,17 +66,11 @@ class _QiQHomeState extends State<QiQHome> {
               });
             },
 
-            onNotesSelected: () {
-              print('Notes selected!');
-            },
+            onNotesSelected: () {},
 
-            onBookmarksSelected: () {
-              print('Bookmarks selected!');
-            },
+            onBookmarksSelected: () {},
 
-            onFavoritesSelected: () {
-              print('Favorites selected!');
-            },
+            onFavoritesSelected: () {},
 
             onReturn: () {
               setState(() {

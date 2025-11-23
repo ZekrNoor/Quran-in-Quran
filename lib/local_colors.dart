@@ -31,4 +31,18 @@ final class LocalColors {
     0xb6,
   );
   static const Color navBarButtonIcon = Color.fromRGBO(0xfc, 0xc8, 0x00, 1.0);
+
+  static const Color surahMenuBg = Color.fromRGBO(0xff, 0xf8, 0xdc, 1.0);
+  static const Color surahMenuSurahContainerBg = Color.fromRGBO(
+    0xfd,
+    0xff,
+    0xfc,
+    1.0,
+  );
+  static const Color surahMenuSurahContainerBorder = Color.fromRGBO(
+    0xd8,
+    0xd8,
+    0xd8,
+    1.0,
+  );
 }
