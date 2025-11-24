@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -201,12 +202,12 @@ class SurahIcon extends StatelessWidget {
         shape: BoxShape.rectangle,
 
         gradient: LinearGradient(
-          begin: AlignmentGeometry.center,
-          end: AlignmentGeometry.centerRight,
+          begin: AlignmentGeometry.topCenter,
+          end: AlignmentGeometry.bottomCenter,
 
           colors: [
-            Color.fromRGBO(0xff, 0xf0, 0xb5, 1.0),
-            Color.fromRGBO(0xff, 0xeb, 0xa0, 1.0),
+            LocalColors.surahMenuSurahIconGradientStart,
+            LocalColors.surahMenuSurahIconGradientEnd,
           ],
         ),
       ),
@@ -220,46 +221,7 @@ class SurahIcon extends StatelessWidget {
 }
 
 class SurahName extends StatelessWidget {
-  const SurahName({
-    super.key,
-    this.isMeccan = false,
-    required this.surahNumber,
-  });
-
-  final bool isMeccan;
-  final int surahNumber;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      textDirection: TextDirection.rtl,
-
-      children: [
-        SurahIcon(isMeccan: isMeccan),
-
-        SizedBox(width: 20),
-
-        ClipRect(
-          child: Align(
-            alignment: Alignment.center,
-
-            widthFactor: 1.0,
-            heightFactor: 0.57,
-
-            child: Hero(
-              tag: surahNumber,
-
-              child: ArabicSurahName(surahNumber: surahNumber),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ArabicSurahName extends StatelessWidget {
-  const ArabicSurahName({super.key, required this.surahNumber});
+  const SurahName({super.key, required this.surahNumber});
 
   final int surahNumber;
 
@@ -272,14 +234,72 @@ class ArabicSurahName extends StatelessWidget {
       fontFamily = 'QuranSurah1';
     }
 
-    return Text(
-      surahMap[surahNumber] ?? '',
+    return SizedBox(
+      height: LocalConsts.surahMenuSurahIconSize,
+      width: 100,
 
-      style: TextStyle(
-        color: Color.fromRGBO(0x8c, 0x6f, 0x00, 1.0),
+      child: FittedBox(
+        alignment: Alignment.center,
+        fit: BoxFit.fitWidth,
 
-        fontFamily: fontFamily,
-        fontSize: 82,
+        child: Text(
+          surahMap[surahNumber] ?? '',
+
+          style: TextStyle(
+            color: LocalColors.surahMenuSurahName,
+
+            height: 0.0,
+
+            fontFamily: fontFamily,
+            fontSize: 82,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Surah extends StatelessWidget {
+  const Surah({super.key, required this.surahNumber});
+
+  final int surahNumber;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(createRouteQiQSurah(surahNumber));
+        },
+
+        child: SurahContainer(
+          children: [
+            Row(
+              textDirection: TextDirection.rtl,
+
+              children: [
+                SurahIcon(isMeccan: true),
+
+                SizedBox(width: 20),
+
+                Hero(
+                  tag: surahNumber,
+
+                  child: SurahName(surahNumber: surahNumber),
+                ),
+              ],
+            ),
+
+            Icon(
+              PhosphorIconsRegular.caretLeft,
+
+              color: LocalColors.surahMenuSurahName,
+              size: 24,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -291,7 +311,7 @@ Route<void> createRouteQiQSurah(int surahNumber) {
         QiQSurah(surahNumber: surahNumber),
 
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final tween = Tween(begin: Offset(1.0, 0.0), end: Offset.zero);
+      final tween = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero);
       final curvedAnimation = CurvedAnimation(
         parent: animation,
 
@@ -314,57 +334,36 @@ class QiQSurah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20),
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              children: [
+                SizedBox(height: 40),
 
-            children: [
-              Hero(
-                tag: surahNumber!,
+                Hero(
+                  tag: surahNumber!,
 
-                child: ArabicSurahName(surahNumber: surahNumber!),
-              ),
+                  child: SurahName(surahNumber: surahNumber!),
+                ),
 
-              CupertinoButton.filled(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                const Spacer(),
 
-                child: Text('return'),
-              ),
-            ],
+                CupertinoButton.filled(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+
+                  child: Text('return'),
+                ),
+
+                SizedBox(height: 20),
+              ],
+            ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class SurahEntry extends StatelessWidget {
-  const SurahEntry({super.key, required this.surahNumber});
-
-  final int surahNumber;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(createRouteQiQSurah(surahNumber));
-        },
-
-        child: SurahContainer(
-          children: [
-            SurahName(surahNumber: surahNumber, isMeccan: true),
-
-            Icon(PhosphorIconsRegular.addressBook, size: 54),
-          ],
         ),
       ),
     );
@@ -376,36 +375,139 @@ class QiQSurahMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
+    return Scaffold(
       backgroundColor: LocalColors.surahMenuBg,
 
-      child: SafeArea(
-        child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            ScrollConfiguration(
+              behavior: ScrollConfiguration.of(
+                context,
+              ).copyWith(scrollbars: false),
 
-          child: ListView(
-            physics: ClampingScrollPhysics(),
+              child: ListView(
+                physics: ClampingScrollPhysics(),
 
-            children: [
-              for (int i = 1; i <= 114; i++)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 4,
-                  ),
+                children: [
+                  for (int i = 1; i <= 114; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 4,
+                      ),
 
-                  child: SurahEntry(surahNumber: i),
+                      child: Surah(surahNumber: i),
+                    ),
+
+                  SizedBox(height: 400),
+                ],
+              ),
+            ),
+
+            Column(
+              children: [
+                const Spacer(),
+
+                Row(
+                  children: [
+                    const Spacer(),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: LocalColors.surahMenuSurahContainerBorder,
+
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(45),
+
+                        color: LocalColors.quranAppWidgetBg,
+                      ),
+
+                      child: Padding(
+                        padding: EdgeInsets.all(6),
+
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+
+                              padding: EdgeInsets.zero,
+
+                              icon: Ink(
+                                decoration: const ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+
+                                    colors: [
+                                      LocalColors.surahMenuNavGradientStart,
+                                      LocalColors.surahMenuNavGradientEnd,
+                                    ],
+                                  ),
+
+                                  shape: CircleBorder(),
+                                ),
+
+                                padding: EdgeInsets.all(7),
+
+                                child: Icon(
+                                  PhosphorIconsRegular.arrowBendUpLeft,
+
+                                  color: LocalColors.quranAppText,
+                                ),
+                              ),
+                              iconSize: 30,
+                            ),
+
+                            SizedBox(width: 7),
+
+                            IconButton(
+                              onPressed: () {},
+
+                              padding: EdgeInsets.zero,
+
+                              icon: Ink(
+                                decoration: const ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+
+                                    colors: [
+                                      LocalColors.surahMenuNavGradientStart,
+                                      LocalColors.surahMenuNavGradientEnd,
+                                    ],
+                                  ),
+
+                                  shape: CircleBorder(),
+                                ),
+
+                                padding: EdgeInsets.all(7),
+
+                                child: Icon(
+                                  PhosphorIconsRegular.house,
+
+                                  color: LocalColors.quranAppText,
+                                ),
+                              ),
+                              iconSize: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const Spacer(),
+                  ],
                 ),
 
-              CupertinoButton.filled(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-
-                child: Text('return'),
-              ),
-            ],
-          ),
+                SizedBox(height: 24),
+              ],
+            ),
+          ],
         ),
       ),
     );
