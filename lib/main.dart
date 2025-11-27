@@ -5,8 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'package:quran_in_quran/nav_bar.dart';
-import 'home.dart';
-import 'zekrnoor_client.dart';
+import 'package:quran_in_quran/resource_manager.dart';
+import 'package:quran_in_quran/home.dart';
+import 'package:quran_in_quran/zekrnoor_client.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,19 +27,31 @@ class QiQApp extends StatelessWidget {
   const QiQApp({super.key});
 
   static ZekrnoorClient client = ZekrnoorClient();
+  static ResourceManager resMan = ResourceManager();
 
   @override
   Widget build(BuildContext context) {
     client.login();
 
-    return const CupertinoApp(
+    return CupertinoApp(
       debugShowCheckedModeBanner: false,
       theme: CupertinoThemeData(brightness: Brightness.light),
       home: Stack(
         alignment: AlignmentGeometry.center,
 
         children: [
-          QiQHome(),
+          FutureBuilder(
+            future: resMan.load(),
+
+            builder: (context, snapshot) {
+              if (snapshot.data ?? false) {
+                return QiQHome();
+              } else {
+                return SizedBox();
+              }
+            },
+          ),
+
           Positioned(bottom: 10, child: NavBar()),
         ],
       ),

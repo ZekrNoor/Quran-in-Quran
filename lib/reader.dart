@@ -8,17 +8,28 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+import 'package:quran_in_quran/chapter.dart';
 import 'package:quran_in_quran/local_colors.dart';
 import 'package:quran_in_quran/local_consts.dart';
 import 'package:quran_in_quran/local_paths.dart';
 import 'package:quran_in_quran/local_strings.dart';
+import 'package:quran_in_quran/main.dart';
+import 'package:quran_in_quran/surah_menu.dart';
+import 'package:quran_in_quran/to_hindi.dart';
 
-Route<void> createRouteQiQReader() {
+Route<void> createRouteQiQReader({
+  Chapter? chapter,
+  bool slideFromRight = true,
+}) {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const QiQReader(),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        QiQReader(chapter: chapter),
 
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final tween = Tween(begin: Offset(1.0, 0.0), end: Offset.zero);
+      final tween = Tween(
+        begin: Offset(slideFromRight ? 1.0 : -1.0, 0.0),
+        end: Offset.zero,
+      );
       final curvedAnimation = CurvedAnimation(
         parent: animation,
         curve: Curves.easeInOut,
@@ -61,33 +72,6 @@ class QiQReaderContainer extends StatelessWidget {
   }
 }
 
-extension IntExtension on int {
-  String toHindi() {
-    int number = this;
-    int numberOfDigits = 0;
-
-    for (int i = 1; ; i++) {
-      number ~/= 10;
-
-      if (number == 0) {
-        numberOfDigits = i;
-        break;
-      }
-    }
-
-    number = this;
-
-    final chars = List.filled(numberOfDigits, 0);
-
-    for (int i = 0; i < numberOfDigits; i++) {
-      chars[numberOfDigits - 1 - i] = 0x06F0 + (number % 10);
-      number ~/= 10;
-    }
-
-    return String.fromCharCodes(chars);
-  }
-}
-
 class Word extends StatelessWidget {
   const Word(this.code, this.page, {super.key});
 
@@ -103,54 +87,44 @@ class Word extends StatelessWidget {
         color: LocalColors.quranAppText,
 
         fontFamily: 'P${page.toString()}',
-        fontSize: 22,
+        fontSize: LocalConsts.readerFontSize,
 
-        height: 2.1,
+        height: LocalConsts.readerFontSize / LocalConsts.readerLineHeight,
       ),
     );
   }
 }
 
-class Line extends StatelessWidget {
-  const Line(this.words, {super.key});
-
-  final List<Word> words;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      textDirection: TextDirection.rtl,
-
-      children: words,
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  const Page(this.lines, {super.key});
-
-  final List<Line> lines;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: lines);
-  }
-}
-
 class QiQReader extends StatefulWidget {
-  const QiQReader({super.key});
+  const QiQReader({super.key, this.chapter});
+
+  final Chapter? chapter;
 
   @override
   State<QiQReader> createState() => _QiQReaderState();
 }
 
 class _QiQReaderState extends State<QiQReader> {
-  int _page = 3;
-  int _chapter = 17;
-  late Future<Page?> _loadPage;
+  int _pageNumber = 1;
+  int _chapter = 1;
 
-  Future<Page?> loadPage(int pageNumber) async {
+  late List<List<Widget>> _lines;
+
+  void _addWord(int line, Widget word) {
+    _lines[line - 1].add(word);
+  }
+
+  void _clearLines() {
+    _lines = List.generate(
+      15,
+
+      (index) => List.empty(growable: true),
+
+      growable: false,
+    );
+  }
+
+  Future<void> _loadPage(int pageNumber) async {
     final docDirPath = (await getApplicationDocumentsDirectory()).path;
     final pageFile = File(
       '$docDirPath/${LocalPaths.quranDir}/${pageNumber.toString()}.json',
@@ -161,23 +135,11 @@ class _QiQReaderState extends State<QiQReader> {
         await pageFile.readAsString(),
       );
 
-      final List<Line> lines = List.empty(growable: true);
-
       lineLoop:
-      for (
-        int line = page["verses"][0]["words"][0]["line_number"],
-            verse = 0,
-            word = 0;
-        ;
-        line++
-      ) {
-        final List<Word> words = List.empty(growable: true);
-
+      for (int line = 1, verse = 0, word = 0; ; line++) {
         verseLoop:
         for (; ; verse++) {
           if (page["verses"].length == verse) {
-            lines.add(Line(words));
-
             break lineLoop;
           }
 
@@ -194,18 +156,30 @@ class _QiQReaderState extends State<QiQReader> {
               break verseLoop;
             }
 
-            words.add(
+            _addWord(
+              page["verses"][verse]["words"][word]["line_number"],
+
               Word(page["verses"][verse]["words"][word]["code_v2"], pageNumber),
             );
+
+            if (word == 0 &&
+                page["verses"][verse]["verse_number"] == 1 &&
+                page["verses"][verse]["chapter_id"] !=
+                    (widget.chapter?.number ?? 0)) {
+              _addWord(
+                page["verses"][verse]["words"][0]["line_number"] - 1,
+
+                SurahName(
+                  chapter: QiQApp
+                      .resMan
+                      .chaptersData
+                      .chapters[page["verses"][verse]["chapter_id"] - 1],
+                ),
+              );
+            }
           }
         }
-
-        lines.add(Line(words));
       }
-
-      return Page(lines);
-    } else {
-      return null;
     }
   }
 
@@ -213,7 +187,24 @@ class _QiQReaderState extends State<QiQReader> {
   void initState() {
     super.initState();
 
-    _loadPage = loadPage(_page);
+    _clearLines();
+
+    if (widget.chapter != null) {
+      _addWord(
+        widget.chapter!.position,
+
+        Hero(
+          tag: widget.chapter!.number,
+
+          child: SurahName(chapter: widget.chapter!),
+        ),
+      );
+    }
+
+    _pageNumber = widget.chapter?.page ?? _pageNumber;
+    _loadPage(_pageNumber).then((_) {
+      setState(() {});
+    });
   }
 
   @override
@@ -278,20 +269,23 @@ class _QiQReaderState extends State<QiQReader> {
 
             SizedBox(height: 10),
 
-            Padding(
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-              child: FutureBuilder(
-                future: _loadPage,
+              children: [
+                for (final line in _lines)
+                  SizedBox(
+                    height: LocalConsts.readerLineHeight,
 
-                builder: (BuildContext context, AsyncSnapshot<Page?> snapshot) {
-                  if (snapshot.hasData) {
-                    return snapshot.data!;
-                  } else {
-                    return SizedBox();
-                  }
-                },
-              ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      textDirection: TextDirection.rtl,
+
+                      children: line,
+                    ),
+                  ),
+              ],
             ),
 
             const Spacer(),
@@ -426,9 +420,11 @@ class _QiQReaderState extends State<QiQReader> {
 
                   child: IconButton(
                     onPressed: () {
-                      setState(() {
-                        _page--;
-                        _loadPage = loadPage(_page);
+                      _pageNumber--;
+
+                      _clearLines();
+                      _loadPage(_pageNumber).then((_) {
+                        setState(() {});
                       });
                     },
 
@@ -456,9 +452,11 @@ class _QiQReaderState extends State<QiQReader> {
 
                   child: IconButton(
                     onPressed: () {
-                      setState(() {
-                        _page++;
-                        _loadPage = loadPage(_page);
+                      _pageNumber++;
+
+                      _clearLines();
+                      _loadPage(_pageNumber).then((_) {
+                        setState(() {});
                       });
                     },
 

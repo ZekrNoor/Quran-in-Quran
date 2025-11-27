@@ -70,4 +70,16 @@ final class LocalColors {
     0x77,
     1.0,
   );
+  static const Color surahMenuSearchBoxHint = Color.fromRGBO(
+    0x77,
+    0x77,
+    0x77,
+    1.0,
+  );
+  static const Color surahMenuNumberOfVerses = Color.fromRGBO(
+    0x8c,
+    0x6f,
+    0x00,
+    1.0,
+  );
 }
