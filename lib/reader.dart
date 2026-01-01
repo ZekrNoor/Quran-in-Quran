@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:path_provider/path_provider.dart';
@@ -9,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'package:quran_in_quran/chapter.dart';
+import 'package:quran_in_quran/gold_button.dart';
 import 'package:quran_in_quran/local_colors.dart';
 import 'package:quran_in_quran/local_consts.dart';
 import 'package:quran_in_quran/local_paths.dart';
@@ -43,31 +43,26 @@ Route<void> createRouteQiQReader({
   );
 }
 
-class QiQReaderContainer extends StatelessWidget {
-  const QiQReaderContainer({
-    super.key,
-    this.child,
-    this.height = 50,
-    this.width = 412,
-  });
+class RoundedContainer extends StatelessWidget {
+  const RoundedContainer({super.key, this.child});
 
-  final double height;
-  final double width;
   final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        border: Border.all(
+          color: LocalColors.surahMenuSurahContainerBorder,
+
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(45),
+
         color: LocalColors.quranAppWidgetBg,
-
-        borderRadius: BorderRadius.all(Radius.circular(height / 2)),
-        border: Border.all(color: LocalColors.quranAppBorder, width: 1.0),
-
-        shape: BoxShape.rectangle,
       ),
 
-      child: SizedBox(height: height, width: width, child: child),
+      child: child,
     );
   }
 }
@@ -90,6 +85,163 @@ class Word extends StatelessWidget {
         fontSize: LocalConsts.readerFontSize,
 
         height: LocalConsts.readerFontSize / LocalConsts.readerLineHeight,
+      ),
+    );
+  }
+}
+
+class GoldBar extends StatelessWidget {
+  const GoldBar({super.key, this.spacing = 4});
+
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) {
+    return RoundedContainer(
+      child: Padding(
+        padding: EdgeInsets.all(6),
+
+        child: Row(
+          children: [
+            GoldButton(
+              onPressed: () {},
+              icon: PhosphorIconsRegular.listBullets,
+            ),
+
+            SizedBox(width: spacing),
+
+            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.binoculars),
+
+            SizedBox(width: spacing),
+
+            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.globe),
+
+            SizedBox(width: spacing),
+
+            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.textT),
+
+            SizedBox(width: spacing),
+
+            GoldButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+
+              icon: PhosphorIconsRegular.house,
+            ),
+
+            SizedBox(width: spacing),
+
+            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.play),
+
+            SizedBox(width: spacing),
+
+            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.sliders),
+
+            SizedBox(width: spacing),
+
+            GoldButton(
+              onPressed: () {},
+              icon: PhosphorIconsRegular.magnifyingGlassPlus,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InfoBar extends StatelessWidget {
+  const InfoBar({super.key, required this.chapter});
+
+  final int chapter;
+
+  @override
+  Widget build(BuildContext context) {
+    return RoundedContainer(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+
+        child: Row(
+          children: [
+            SizedBox(width: 12.0),
+
+            Icon(
+              PhosphorIconsRegular.bookmarks,
+
+              size: 32.0,
+              color: Color.fromRGBO(0xfc, 0xc8, 0x00, 1.0),
+            ),
+
+            SizedBox(width: 4.0),
+
+            Text(
+              LocalStrings.bookmark,
+
+              style: TextStyle(
+                fontFamily: 'Sindhi',
+                fontSize: 20.0,
+                color: LocalColors.quranAppText,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+
+            const Spacer(),
+
+            Text(
+              chapter.toHindi(),
+
+              textDirection: TextDirection.rtl,
+
+              style: TextStyle(
+                fontFamily: 'Sindhi',
+                fontSize: 20.0,
+                color: LocalColors.quranAppText,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+
+            SizedBox(width: 12.0),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PageNumber extends StatelessWidget {
+  const PageNumber(this.pageNumber, {super.key});
+
+  final int pageNumber;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Color.fromRGBO(0x77, 0x77, 0x77, 1.0),
+        ),
+        borderRadius: BorderRadius.circular(36),
+      ),
+
+      child: SizedBox(
+        width: 50,
+
+        child: Text(
+          pageNumber.toHindi(),
+
+          textAlign: TextAlign.center,
+
+          style: TextStyle(
+            color: Color.fromRGBO(0x77, 0x77, 0x77, 1.0),
+
+            fontFamily: 'Sindhi',
+            fontSize: 18,
+
+            height: 1.0,
+          ),
+        ),
       ),
     );
   }
@@ -212,268 +364,62 @@ class _QiQReaderState extends State<QiQReader> {
     return Scaffold(
       backgroundColor: LocalColors.quranAppReaderBg,
 
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsetsGeometry.symmetric(
-                vertical: 8.0,
-                horizontal: 14.0,
-              ),
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 14.0,
+                  ),
 
-              child: QiQReaderContainer(
-                child: Row(
+                  child: InfoBar(chapter: _chapter),
+                ),
+
+                SizedBox(height: 10),
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
-                    SizedBox(width: 12.0),
+                    for (final line in _lines)
+                      SizedBox(
+                        height: LocalConsts.readerLineHeight,
 
-                    Icon(
-                      PhosphorIconsRegular.bookmarks,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
 
-                      size: 32.0,
-                      color: Color.fromRGBO(0xfc, 0xc8, 0x00, 1.0),
-                    ),
+                          textDirection: TextDirection.rtl,
 
-                    SizedBox(width: 4.0),
-
-                    Text(
-                      LocalStrings.bookmark,
-
-                      style: TextStyle(
-                        fontFamily: 'Sindhi',
-                        fontSize: 20.0,
-                        color: LocalColors.quranAppText,
-                        fontWeight: FontWeight.w400,
+                          children: line,
+                        ),
                       ),
-                    ),
-
-                    Spacer(),
-
-                    Text(
-                      _chapter.toHindi(),
-
-                      textDirection: TextDirection.rtl,
-
-                      style: TextStyle(
-                        fontFamily: 'Sindhi',
-                        fontSize: 20.0,
-                        color: LocalColors.quranAppText,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-
-                    SizedBox(width: 12.0),
                   ],
                 ),
-              ),
-            ),
 
-            SizedBox(height: 10),
+                const Spacer(),
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                PageNumber(_pageNumber),
 
-              children: [
-                for (final line in _lines)
-                  SizedBox(
-                    height: LocalConsts.readerLineHeight,
-
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-
-                      textDirection: TextDirection.rtl,
-
-                      children: line,
-                    ),
-                  ),
+                SizedBox(height: 10),
               ],
             ),
+          ),
 
-            const Spacer(),
+          Align(
+            alignment: Alignment.bottomCenter,
 
-            QiQReaderContainer(
-              height: 56,
-              width: 392,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 40),
 
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: 2.0),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.listBullets,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.binoculars,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.globe,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.textT,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.house,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.play,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.sliders,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  CircleAvatar(
-                    backgroundColor: LocalColors.quranAppAvatarBg,
-
-                    radius: LocalConsts.readerAvatarRadius,
-
-                    child: Icon(
-                      PhosphorIconsRegular.magnifyingGlassPlus,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-
-                  SizedBox(width: 2.0),
-                ],
+                children: [const Spacer(), const GoldBar(), const Spacer()],
               ),
             ),
-
-            SizedBox(height: 10.0),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircleAvatar(
-                  backgroundColor: LocalColors.quranAppAvatarBg,
-
-                  radius: LocalConsts.readerAvatarRadius,
-
-                  child: IconButton(
-                    onPressed: () {
-                      _pageNumber--;
-
-                      _clearLines();
-                      _loadPage(_pageNumber).then((_) {
-                        setState(() {});
-                      });
-                    },
-
-                    icon: Icon(
-                      PhosphorIconsRegular.arrowLeft,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-                ),
-
-                CupertinoButton.filled(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-
-                  child: Text('return'),
-                ),
-
-                CircleAvatar(
-                  backgroundColor: LocalColors.quranAppAvatarBg,
-
-                  radius: LocalConsts.readerAvatarRadius,
-
-                  child: IconButton(
-                    onPressed: () {
-                      _pageNumber++;
-
-                      _clearLines();
-                      _loadPage(_pageNumber).then((_) {
-                        setState(() {});
-                      });
-                    },
-
-                    icon: Icon(
-                      PhosphorIconsRegular.arrowRight,
-
-                      color: LocalColors.quranAppText,
-                      size: LocalConsts.readerAvatarSize,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 10),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

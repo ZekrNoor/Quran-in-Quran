@@ -58,18 +58,6 @@ final class LocalColors {
     0xa0,
     1.0,
   );
-  static const Color surahMenuNavGradientStart = Color.fromRGBO(
-    0xff,
-    0xeb,
-    0xa0,
-    1.0,
-  );
-  static const Color surahMenuNavGradientEnd = Color.fromRGBO(
-    0xff,
-    0xe3,
-    0x77,
-    1.0,
-  );
   static const Color surahMenuSearchBoxHint = Color.fromRGBO(
     0x77,
     0x77,
@@ -80,6 +68,19 @@ final class LocalColors {
     0x8c,
     0x6f,
     0x00,
+    1.0,
+  );
+
+  static const Color goldButtonGradientStart = Color.fromRGBO(
+    0xff,
+    0xeb,
+    0xa0,
+    1.0,
+  );
+  static const Color goldButtonGradientEnd = Color.fromRGBO(
+    0xff,
+    0xe3,
+    0x77,
     1.0,
   );
 }

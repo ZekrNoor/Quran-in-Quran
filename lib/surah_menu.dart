@@ -435,8 +435,8 @@ class QiQSurahMenu extends StatelessWidget {
                                     end: Alignment.bottomCenter,
 
                                     colors: [
-                                      LocalColors.surahMenuNavGradientStart,
-                                      LocalColors.surahMenuNavGradientEnd,
+                                      LocalColors.goldButtonGradientStart,
+                                      LocalColors.goldButtonGradientEnd,
                                     ],
                                   ),
 
@@ -468,8 +468,8 @@ class QiQSurahMenu extends StatelessWidget {
                                     end: Alignment.bottomCenter,
 
                                     colors: [
-                                      LocalColors.surahMenuNavGradientStart,
-                                      LocalColors.surahMenuNavGradientEnd,
+                                      LocalColors.goldButtonGradientStart,
+                                      LocalColors.goldButtonGradientEnd,
                                     ],
                                   ),
 
