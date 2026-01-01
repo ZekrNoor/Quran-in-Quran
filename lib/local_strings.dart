@@ -12,4 +12,6 @@ final class LocalStrings {
   static const String singUp = 'ثبت نام';
   static const String profile = 'پروفایل';
   static const String bookmark = 'نشانه گذاری';
+
+  static const String surahMenuSearchBoxHint = 'جست و جو در فهرست';
 }

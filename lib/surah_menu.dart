@@ -1,126 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+import 'package:quran_in_quran/chapter.dart';
 import 'package:quran_in_quran/local_colors.dart';
 import 'package:quran_in_quran/local_consts.dart';
-
-const Map<int, String> surahMap = {
-  1: '1',
-  2: '2',
-  3: '3',
-  4: '4',
-  5: '5',
-  6: '6',
-  7: '7',
-  8: '8',
-  9: '9',
-  10: 'a',
-  11: 'b',
-  12: 'c',
-  13: 'd',
-  14: 'e',
-  15: 'f',
-  16: 'g',
-  17: 'h',
-  18: 'i',
-  19: 'j',
-  20: 'k',
-  21: 'l',
-  22: 'm',
-  23: 'n',
-  24: 'o',
-  25: 'p',
-  26: 'q',
-  27: 'r',
-  28: 's',
-  29: 't',
-  30: 'u',
-  31: 'v',
-  32: 'w',
-  33: 'x',
-  34: 'A',
-  35: 'B',
-  36: 'C',
-  37: 'D',
-  38: 'E',
-  39: 'F',
-  40: 'G',
-  41: 'H',
-  42: 'I',
-  43: 'J',
-  44: 'K',
-  45: 'L',
-  46: 'M',
-  47: 'N',
-  48: 'O',
-  49: 'P',
-  50: 'Q',
-  51: 'R',
-  52: 'S',
-  53: 'T',
-  54: 'U',
-  55: 'V',
-  56: 'W',
-  57: 'X',
-  58: 'Y',
-  59: 'Z',
-  60: 'a',
-  61: 'b',
-  62: 'c',
-  63: 'd',
-  64: 'e',
-  65: 'f',
-  66: 'g',
-  67: 'h',
-  68: 'i',
-  69: 'j',
-  70: 'k',
-  71: 'l',
-  72: 'm',
-  73: 'n',
-  74: 'o',
-  75: 'p',
-  76: 'q',
-  77: 'r',
-  78: 's',
-  79: 't',
-  80: 'u',
-  81: 'v',
-  82: 'w',
-  83: 'x',
-  84: 'y',
-  85: 'z',
-  86: 'G',
-  87: 'H',
-  88: 'I',
-  89: 'J',
-  90: 'K',
-  91: 'L',
-  92: 'M',
-  93: 'N',
-  94: 'O',
-  95: 'P',
-  96: 'Q',
-  97: 'R',
-  98: 'S',
-  99: 'T',
-  100: 'U',
-  101: 'V',
-  102: 'W',
-  103: 'X',
-  104: 'Y',
-  105: 'Z',
-  106: '1',
-  107: '2',
-  108: '3',
-  109: '4',
-  110: '5',
-  111: '6',
-  112: '7',
-  113: '8',
-  114: '9',
-};
+import 'package:quran_in_quran/local_strings.dart';
+import 'package:quran_in_quran/main.dart';
+import 'package:quran_in_quran/reader.dart';
+import 'package:quran_in_quran/to_hindi.dart';
 
 Route<void> createRouteQiQSurahMenu() {
   return PageRouteBuilder(
@@ -201,12 +93,12 @@ class SurahIcon extends StatelessWidget {
         shape: BoxShape.rectangle,
 
         gradient: LinearGradient(
-          begin: AlignmentGeometry.center,
-          end: AlignmentGeometry.centerRight,
+          begin: AlignmentGeometry.topCenter,
+          end: AlignmentGeometry.bottomCenter,
 
           colors: [
-            Color.fromRGBO(0xff, 0xf0, 0xb5, 1.0),
-            Color.fromRGBO(0xff, 0xeb, 0xa0, 1.0),
+            LocalColors.surahMenuSurahIconGradientStart,
+            LocalColors.surahMenuSurahIconGradientEnd,
           ],
         ),
       ),
@@ -220,123 +112,37 @@ class SurahIcon extends StatelessWidget {
 }
 
 class SurahName extends StatelessWidget {
-  const SurahName({
-    super.key,
-    this.isMeccan = false,
-    required this.surahNumber,
-  });
+  const SurahName({super.key, required this.chapter});
 
-  final bool isMeccan;
-  final int surahNumber;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      textDirection: TextDirection.rtl,
-
-      children: [
-        SurahIcon(isMeccan: isMeccan),
-
-        SizedBox(width: 20),
-
-        ClipRect(
-          child: Align(
-            alignment: Alignment.center,
-
-            widthFactor: 1.0,
-            heightFactor: 0.57,
-
-            child: Hero(
-              tag: surahNumber,
-
-              child: ArabicSurahName(surahNumber: surahNumber),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ArabicSurahName extends StatelessWidget {
-  const ArabicSurahName({super.key, required this.surahNumber});
-
-  final int surahNumber;
+  final Chapter chapter;
 
   @override
   Widget build(BuildContext context) {
     final String fontFamily;
-    if (surahNumber > 59) {
+    if (chapter.number > 59) {
       fontFamily = 'QuranSurah2';
     } else {
       fontFamily = 'QuranSurah1';
     }
 
-    return Text(
-      surahMap[surahNumber] ?? '',
+    return SizedBox(
+      height: LocalConsts.surahMenuSurahIconSize,
+      width: LocalConsts.surahMenuSurahNameSize,
 
-      style: TextStyle(
-        color: Color.fromRGBO(0x8c, 0x6f, 0x00, 1.0),
+      child: FittedBox(
+        alignment: Alignment.center,
+        fit: BoxFit.none,
 
-        fontFamily: fontFamily,
-        fontSize: 82,
-      ),
-    );
-  }
-}
+        child: Text(
+          chapter.glyphCode,
 
-Route<void> createRouteQiQSurah(int surahNumber) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        QiQSurah(surahNumber: surahNumber),
+          style: TextStyle(
+            color: LocalColors.surahMenuSurahName,
 
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final tween = Tween(begin: Offset(1.0, 0.0), end: Offset.zero);
-      final curvedAnimation = CurvedAnimation(
-        parent: animation,
+            height: 0.0,
 
-        curve: Curves.easeInOut,
-      );
-
-      return SlideTransition(
-        position: tween.animate(curvedAnimation),
-
-        child: child,
-      );
-    },
-  );
-}
-
-class QiQSurah extends StatelessWidget {
-  const QiQSurah({super.key, this.surahNumber});
-
-  final int? surahNumber;
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20),
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [
-              Hero(
-                tag: surahNumber!,
-
-                child: ArabicSurahName(surahNumber: surahNumber!),
-              ),
-
-              CupertinoButton.filled(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-
-                child: Text('return'),
-              ),
-            ],
+            fontFamily: fontFamily,
+            fontSize: LocalConsts.surahMenuSurahNameSize,
           ),
         ),
       ),
@@ -344,10 +150,10 @@ class QiQSurah extends StatelessWidget {
   }
 }
 
-class SurahEntry extends StatelessWidget {
-  const SurahEntry({super.key, required this.surahNumber});
+class Surah extends StatelessWidget {
+  const Surah({super.key, required this.chapter});
 
-  final int surahNumber;
+  final Chapter chapter;
 
   @override
   Widget build(BuildContext context) {
@@ -356,17 +162,219 @@ class SurahEntry extends StatelessWidget {
 
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(createRouteQiQSurah(surahNumber));
+          Navigator.of(
+            context,
+          ).push(createRouteQiQReader(chapter: chapter, slideFromRight: false));
         },
 
         child: SurahContainer(
           children: [
-            SurahName(surahNumber: surahNumber, isMeccan: true),
+            Row(
+              textDirection: TextDirection.rtl,
 
-            Icon(PhosphorIconsRegular.addressBook, size: 54),
+              children: [
+                SurahIcon(isMeccan: chapter.isMeccan),
+
+                SizedBox(width: 20),
+
+                Hero(
+                  tag: chapter.number,
+
+                  child: SurahName(chapter: chapter),
+                ),
+              ],
+            ),
+
+            Row(
+              textDirection: TextDirection.rtl,
+
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: LocalColors.surahMenuNumberOfVerses,
+
+                      width: 1.0,
+                    ),
+
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 2,
+                    horizontal: 17,
+                  ),
+
+                  child: Center(
+                    child: Text(
+                      "${chapter.numberOfVerses.toHindi()} آیه",
+
+                      textDirection: TextDirection.rtl,
+
+                      style: TextStyle(
+                        color: LocalColors.surahMenuNumberOfVerses,
+
+                        fontFamily: 'Sindhi',
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(width: 10),
+
+                Icon(
+                  PhosphorIconsRegular.caretLeft,
+
+                  color: LocalColors.surahMenuSurahName,
+                  size: 24,
+                ),
+              ],
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class SearchBox extends StatelessWidget {
+  const SearchBox({
+    super.key,
+    required this.textController,
+    required this.onChanged,
+  });
+
+  final TextEditingController textController;
+  final void Function(String value) onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTextField(
+      decoration: BoxDecoration(
+        color: LocalColors.surahMenuSurahContainerBg,
+
+        border: Border.all(
+          color: LocalColors.surahMenuSurahContainerBorder,
+          width: LocalConsts.surahMenuSurahContainerBorderWidth,
+        ),
+
+        borderRadius: BorderRadius.circular(
+          LocalConsts.surahMenuSearchBoxRadius,
+        ),
+      ),
+
+      controller: textController,
+
+      onChanged: onChanged,
+
+      textAlign: TextAlign.center,
+
+      placeholder: LocalStrings.surahMenuSearchBoxHint,
+      placeholderStyle: TextStyle(
+        color: LocalColors.surahMenuSearchBoxHint,
+
+        fontFamily: 'Sindhi',
+        fontSize: 20,
+      ),
+
+      style: TextStyle(
+        color: LocalColors.quranAppText,
+
+        fontFamily: 'Sindhi',
+        fontSize: 20,
+      ),
+    );
+  }
+}
+
+class SurahList extends StatefulWidget {
+  const SurahList({super.key, required this.chaptersData});
+
+  final ChaptersData chaptersData;
+
+  @override
+  State<SurahList> createState() => _SurahListState();
+}
+
+class _SurahListState extends State<SurahList> {
+  late TextEditingController _searchTextController;
+  late List<Surah> _surahList;
+
+  void _fillSurahList({Map<int, bool>? filter}) {
+    List<Surah> surahList = List.empty(growable: true);
+
+    for (final chapter in widget.chaptersData.chapters) {
+      if (!(filter?[chapter.number] ?? true)) {
+        continue;
+      }
+
+      surahList.add(Surah(chapter: chapter));
+    }
+
+    _surahList = surahList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _searchTextController = TextEditingController();
+
+    _fillSurahList();
+  }
+
+  @override
+  void dispose() {
+    _searchTextController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      physics: ClampingScrollPhysics(),
+
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+
+          child: SearchBox(
+            textController: _searchTextController,
+
+            onChanged: (value) {
+              if (value == '') {
+                setState(() {
+                  _fillSurahList();
+                });
+              } else {
+                Map<int, bool> surahFilter = {};
+
+                for (final chapter in widget.chaptersData.chapters) {
+                  bool hasMatch =
+                      chapter.englishName.contains(value) ||
+                      chapter.transliteratedName.contains(value) ||
+                      chapter.easyTransliteratedName.contains(value);
+
+                  surahFilter[chapter.number] = hasMatch;
+                }
+
+                setState(() {
+                  _fillSurahList(filter: surahFilter);
+                });
+              }
+            },
+          ),
+        ),
+
+        for (final surah in _surahList)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+
+            child: surah,
+          ),
+
+        SizedBox(height: 400),
+      ],
     );
   }
 }
@@ -376,36 +384,121 @@ class QiQSurahMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
+    return Scaffold(
       backgroundColor: LocalColors.surahMenuBg,
 
-      child: SafeArea(
-        child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context),
 
-          child: ListView(
-            physics: ClampingScrollPhysics(),
+              child: SurahList(chaptersData: QiQApp.resMan.chaptersData),
+            ),
 
-            children: [
-              for (int i = 1; i <= 114; i++)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 4,
-                  ),
+            Column(
+              children: [
+                const Spacer(),
 
-                  child: SurahEntry(surahNumber: i),
+                Row(
+                  children: [
+                    const Spacer(),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: LocalColors.surahMenuSurahContainerBorder,
+
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(45),
+
+                        color: LocalColors.quranAppWidgetBg,
+                      ),
+
+                      child: Padding(
+                        padding: EdgeInsets.all(6),
+
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+
+                              padding: EdgeInsets.zero,
+
+                              icon: Ink(
+                                decoration: const ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+
+                                    colors: [
+                                      LocalColors.goldButtonGradientStart,
+                                      LocalColors.goldButtonGradientEnd,
+                                    ],
+                                  ),
+
+                                  shape: CircleBorder(),
+                                ),
+
+                                padding: EdgeInsets.all(7),
+
+                                child: Icon(
+                                  PhosphorIconsRegular.arrowBendUpLeft,
+
+                                  color: LocalColors.quranAppText,
+                                ),
+                              ),
+                              iconSize: 30,
+                            ),
+
+                            SizedBox(width: 7),
+
+                            IconButton(
+                              onPressed: () {},
+
+                              padding: EdgeInsets.zero,
+
+                              icon: Ink(
+                                decoration: const ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+
+                                    colors: [
+                                      LocalColors.goldButtonGradientStart,
+                                      LocalColors.goldButtonGradientEnd,
+                                    ],
+                                  ),
+
+                                  shape: CircleBorder(),
+                                ),
+
+                                padding: EdgeInsets.all(7),
+
+                                child: Icon(
+                                  PhosphorIconsRegular.house,
+
+                                  color: LocalColors.quranAppText,
+                                ),
+                              ),
+                              iconSize: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const Spacer(),
+                  ],
                 ),
 
-              CupertinoButton.filled(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-
-                child: Text('return'),
-              ),
-            ],
-          ),
+                SizedBox(height: 24),
+              ],
+            ),
+          ],
         ),
       ),
     );

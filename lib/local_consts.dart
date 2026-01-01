@@ -19,9 +19,14 @@ final class LocalConsts {
   static const double navBarNotchDepth = navBarHeight / 2;
   static const Curve navBarCurve = Curves.easeInOut;
 
+  static const double readerFontSize = 25;
+  static const double readerLineHeight = 46;
+
   static const double surahMenuSurahContainerBorderWidth = 0.5;
   static const double surahMenuSurahContainerRadius = 18;
   static const double surahMenuSurahContainerPadding = 7;
   static const double surahMenuSurahIconRadius = 10;
   static const double surahMenuSurahIconSize = 54;
+  static const double surahMenuSurahNameSize = 94;
+  static const double surahMenuSearchBoxRadius = 40;
 }
