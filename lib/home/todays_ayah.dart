@@ -1,9 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
-
-import 'package:quran_in_quran/local_consts.dart';
-import 'package:quran_in_quran/local_strings.dart';
+import 'package:quran_in_quran/local/consts.dart';
+import 'package:quran_in_quran/local/strings.dart';
 
 /* range of glyphs (1 <= `from`/`to`) to be rendered for a single page of the quran */
 String glyphRange(int from, int to) {

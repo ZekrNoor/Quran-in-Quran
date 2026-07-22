@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-
-import 'package:quran_in_quran/surah_menu.dart';
-import 'package:quran_in_quran/home_main_layout.dart';
-import 'package:quran_in_quran/profile_card.dart';
-import 'package:quran_in_quran/profile_overview.dart';
-import 'package:quran_in_quran/reader.dart';
-import 'package:quran_in_quran/side_bar_menu.dart';
-import 'package:quran_in_quran/sign_in.dart';
+import 'surah_menu/route.dart';
+import 'profile/profile_card.dart';
+import 'profile/profile_overview.dart';
+import 'package:quran_in_quran/reader/route.dart';
+import 'side_bar_menu.dart';
+import 'sign_in/route.dart';
+import 'home_main_layout.dart';
 
 class QiQHome extends StatefulWidget {
   const QiQHome({super.key});

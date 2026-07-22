@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import 'al_quran_al_karim.dart';
 import 'daily_meditation.dart';
 import 'home_header.dart';

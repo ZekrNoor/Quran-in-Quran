@@ -21,6 +21,7 @@ final class LocalConsts {
 
   static const double readerFontSize = 25;
   static const double readerLineHeight = 46;
+  static const double readerSlideOffset = 0.1;
 
   static const double surahMenuSurahContainerBorderWidth = 0.5;
   static const double surahMenuSurahContainerRadius = 18;

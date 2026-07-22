@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:quran_in_quran/local_colors.dart';
-import 'package:quran_in_quran/local_consts.dart';
+import 'package:quran_in_quran/local/colors.dart';
+import 'package:quran_in_quran/local/consts.dart';
 
 class NotchedContainerClipper extends CustomClipper<Path> {
   const NotchedContainerClipper({

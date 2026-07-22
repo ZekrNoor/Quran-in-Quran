@@ -1,13 +1,10 @@
 import 'dart:io' show Platform;
-
 import 'package:flutter/cupertino.dart';
-
 import 'package:window_manager/window_manager.dart';
-
-import 'package:quran_in_quran/nav_bar.dart';
-import 'package:quran_in_quran/resource_manager.dart';
-import 'package:quran_in_quran/home.dart';
-import 'package:quran_in_quran/zekrnoor_client.dart';
+import 'nav_bar/nav_bar.dart';
+import 'resource_manager.dart';
+import 'client/zekrnoor_client.dart';
+import 'home/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

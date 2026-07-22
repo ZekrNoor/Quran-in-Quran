@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:quran_in_quran/local_paths.dart';
+import 'package:quran_in_quran/local/paths.dart';
 
 class Bookmark {
   Bookmark({this.type = '', this.value = '', this.id = 0, this.userId = 0});

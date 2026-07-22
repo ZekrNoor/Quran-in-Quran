@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import 'local_strings.dart';
+import 'package:quran_in_quran/local/strings.dart';
 
 class DailyMeditation extends StatelessWidget {
   const DailyMeditation({super.key});

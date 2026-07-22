@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
-
-import 'package:quran_in_quran/chapter.dart';
+import 'package:quran_in_quran/reader/chapter.dart';
 
 class ResourceManager {
   Future<ChaptersData> _getChaptersData() async {

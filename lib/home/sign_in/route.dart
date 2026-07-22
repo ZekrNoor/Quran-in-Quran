@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'sign_in.dart';
 
 Route<void> createRouteQiQSignIn() {
   return PageRouteBuilder(
@@ -19,18 +19,3 @@ Route<void> createRouteQiQSignIn() {
   );
 }
 
-class QiQSignIn extends StatelessWidget {
-  const QiQSignIn({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CupertinoButton.filled(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: Text('haha'),
-      ),
-    );
-  }
-}

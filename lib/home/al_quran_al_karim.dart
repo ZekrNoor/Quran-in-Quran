@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'local_strings.dart';
+import 'package:quran_in_quran/local/strings.dart';
 
 class AlQuranAlKarim extends StatelessWidget {
   const AlQuranAlKarim({super.key, this.onResumeReading, this.onSurahMenu});

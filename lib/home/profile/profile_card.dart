@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quran_in_quran/local_colors.dart';
-
-import 'package:quran_in_quran/local_consts.dart';
-import 'package:quran_in_quran/local_strings.dart';
+import 'package:quran_in_quran/local/colors.dart';
+import 'package:quran_in_quran/local/consts.dart';
+import 'package:quran_in_quran/local/strings.dart';
 import 'package:quran_in_quran/main.dart';
 
 class ProfileCard extends StatefulWidget {
