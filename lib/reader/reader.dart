@@ -6,7 +6,7 @@ import 'package:quran_in_quran/local/consts.dart';
 import 'package:quran_in_quran/main.dart';
 import 'package:quran_in_quran/util/to_hindi.dart';
 import 'package:quran_in_quran/reader/ayah_route.dart';
-import 'package:quran_in_quran/reader/route.dart';
+// import 'package:quran_in_quran/reader/route.dart';
 import 'word.dart';
 import 'qpage.dart';
 import 'info_bar.dart';
