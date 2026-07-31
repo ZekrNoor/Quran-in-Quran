@@ -83,4 +83,13 @@ final class LocalColors {
     0x77,
     1.0,
   );
+
+  static const Color ayahCardBg = Color.fromRGBO(0xff, 0xf5, 0xd6, 1.0);
+  static const Color ayahCardHeaderBg = Color.fromRGBO(0xff, 0xf0, 0xc8, 1.0);
+  static const Color ayahCardTranslationText = Color.fromRGBO(
+    0x77,
+    0x77,
+    0x77,
+    1.0,
+  );
 }

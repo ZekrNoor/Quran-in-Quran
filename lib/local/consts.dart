@@ -30,4 +30,13 @@ final class LocalConsts {
   static const double surahMenuSurahIconSize = 54;
   static const double surahMenuSurahNameSize = 94;
   static const double surahMenuSearchBoxRadius = 40;
+
+  static const double ayahCardRadius = 24;
+  static const double ayahCardHeaderRadius = 20;
+  static const double ayahCardTadabburRadius = 20;
+  static const double ayahCardActionButtonSize = 36;
+  static const double ayahCardArabicFontSize = 28;
+  static const double ayahCardTranslationFontSize = 15;
+  static const double ayahCardHeaderFontSize = 16;
+  static const double ayahCardTadabburFontSize = 14;
 }

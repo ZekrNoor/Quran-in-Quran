@@ -65,9 +65,14 @@ class GoldButton extends StatelessWidget {
 }
 
 class GoldBar extends StatelessWidget {
-  const GoldBar({super.key, this.spacing = 4});
+  const GoldBar({
+    super.key,
+    this.spacing = 4,
+    this.onListBullets,
+  });
 
   final double spacing;
+  final VoidCallback? onListBullets;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +83,7 @@ class GoldBar extends StatelessWidget {
         child: Row(
           children: [
             GoldButton(
-              onPressed: () {},
+              onPressed: onListBullets,
               icon: PhosphorIconsRegular.listBullets,
             ),
 

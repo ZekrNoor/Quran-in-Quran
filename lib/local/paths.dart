@@ -6,4 +6,5 @@ final class LocalPaths {
   static final appDir = 'qiq';
   static final userCredPath = '$appDir/user.cred';
   static final quranDir = "$appDir/quran";
+  static final translationsPath = "$appDir/translations/fa.json";
 }

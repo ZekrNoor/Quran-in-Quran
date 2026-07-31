@@ -14,4 +14,7 @@ final class LocalStrings {
   static const String bookmark = 'نشانه گذاری';
 
   static const String surahMenuSearchBoxHint = 'جست و جو در فهرست';
+  static const String tadabburInAyah = 'تدبّر در آیه';
+  static const String ayahAyahNoData =
+      'دادهٔ آیات در دسترس نیست. لطفاً فایل‌های قرآن را دانلود کنید.';
 }

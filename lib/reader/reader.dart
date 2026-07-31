@@ -5,6 +5,8 @@ import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/local/consts.dart';
 import 'package:quran_in_quran/main.dart';
 import 'package:quran_in_quran/util/to_hindi.dart';
+import 'package:quran_in_quran/reader/ayah_route.dart';
+import 'package:quran_in_quran/reader/route.dart';
 import 'word.dart';
 import 'qpage.dart';
 import 'info_bar.dart';
@@ -341,7 +343,31 @@ class _QiQReaderState extends State<QiQReader>
               padding: EdgeInsets.only(bottom: 40),
 
               child: Row(
-                children: [const Spacer(), const GoldBar(), const Spacer()],
+                children: [
+                  const Spacer(),
+                  GoldBar(
+                    onListBullets: () {
+                      final chapter =
+                          QiQApp.resMan.chaptersData.chapters[_chapter - 1];
+
+                      int? initialVerse;
+                      if (_ayahInFocus.isNotEmpty) {
+                        final parts = _ayahInFocus.first.verseKey.split(':');
+                        if (parts.length == 2) {
+                          initialVerse = int.tryParse(parts[1]);
+                        }
+                      }
+
+                      Navigator.of(context).push(
+                        createRouteQiQAyahReader(
+                          chapter: chapter,
+                          initialVerse: initialVerse,
+                        ),
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                ],
               ),
             ),
           ),
