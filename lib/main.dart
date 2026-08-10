@@ -20,36 +20,57 @@ void main() async {
   runApp(const QiQApp());
 }
 
-class QiQApp extends StatelessWidget {
+class QiQApp extends StatefulWidget {
   const QiQApp({super.key});
 
   static ZekrnoorClient client = ZekrnoorClient();
   static ResourceManager resMan = ResourceManager();
 
   @override
-  Widget build(BuildContext context) {
-    client.login();
+  State<QiQApp> createState() => _QiQAppState();
+}
 
+class _QiQAppState extends State<QiQApp> {
+  @override
+  void initState() {
+    super.initState();
+    print('🔵 QiQApp initializing...');
+    widget.client.login();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       theme: CupertinoThemeData(brightness: Brightness.light),
-      home: Stack(
-        alignment: AlignmentGeometry.center,
-
+      home: Column(
         children: [
-          FutureBuilder(
-            future: resMan.load(),
+          Expanded(
+            child: FutureBuilder<bool>(
+              future: widget.resMan.load(),
+              builder: (context, snapshot) {
+                print(
+                  '📊 FutureBuilder state - ConnectionState: ${snapshot.connectionState}, Data: ${snapshot.data}',
+                );
 
-            builder: (context, snapshot) {
-              if (snapshot.data ?? false) {
-                return QiQHome();
-              } else {
-                return SizedBox();
-              }
-            },
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CupertinoActivityIndicator());
+                } else if (snapshot.hasError) {
+                  print('❌ Error loading resources: ${snapshot.error}');
+                  return Center(
+                    child: Text('Error loading resources: ${snapshot.error}'),
+                  );
+                } else if (snapshot.data ?? false) {
+                  print('✅ Resources loaded successfully');
+                  return QiQHome();
+                } else {
+                  print('⚠️ Resources failed to load (returned false)');
+                  return Center(child: Text('Failed to load resources'));
+                }
+              },
+            ),
           ),
-
-          Positioned(bottom: 10, child: NavBar()),
+          NavBar(),
         ],
       ),
     );
