@@ -34,8 +34,7 @@ class _QiQAppState extends State<QiQApp> {
   @override
   void initState() {
     super.initState();
-    print('🔵 QiQApp initializing...');
-    widget.client.login();
+    QiQApp.client.login();
   }
 
   @override
@@ -47,24 +46,17 @@ class _QiQAppState extends State<QiQApp> {
         children: [
           Expanded(
             child: FutureBuilder<bool>(
-              future: widget.resMan.load(),
+              future: QiQApp.resMan.load(),
               builder: (context, snapshot) {
-                print(
-                  '📊 FutureBuilder state - ConnectionState: ${snapshot.connectionState}, Data: ${snapshot.data}',
-                );
-
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CupertinoActivityIndicator());
                 } else if (snapshot.hasError) {
-                  print('❌ Error loading resources: ${snapshot.error}');
                   return Center(
                     child: Text('Error loading resources: ${snapshot.error}'),
                   );
                 } else if (snapshot.data ?? false) {
-                  print('✅ Resources loaded successfully');
                   return QiQHome();
                 } else {
-                  print('⚠️ Resources failed to load (returned false)');
                   return Center(child: Text('Failed to load resources'));
                 }
               },
