@@ -336,38 +336,31 @@ class _QiQReaderState extends State<QiQReader>
             ),
           ),
 
-          Align(
-            alignment: Alignment.bottomCenter,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 24,
+            child: Center(
+              child: GoldBar(
+                onListBullets: () {
+                  final chapter =
+                      QiQApp.resMan.chaptersData.chapters[_chapter - 1];
 
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 40),
+                  int? initialVerse;
+                  if (_ayahInFocus.isNotEmpty) {
+                    final parts = _ayahInFocus.first.verseKey.split(':');
+                    if (parts.length == 2) {
+                      initialVerse = int.tryParse(parts[1]);
+                    }
+                  }
 
-              child: Row(
-                children: [
-                  const Spacer(),
-                  GoldBar(
-                    onListBullets: () {
-                      final chapter =
-                          QiQApp.resMan.chaptersData.chapters[_chapter - 1];
-
-                      int? initialVerse;
-                      if (_ayahInFocus.isNotEmpty) {
-                        final parts = _ayahInFocus.first.verseKey.split(':');
-                        if (parts.length == 2) {
-                          initialVerse = int.tryParse(parts[1]);
-                        }
-                      }
-
-                      Navigator.of(context).push(
-                        createRouteQiQAyahReader(
-                          chapter: chapter,
-                          initialVerse: initialVerse,
-                        ),
-                      );
-                    },
-                  ),
-                  const Spacer(),
-                ],
+                  Navigator.of(context).push(
+                    createRouteQiQAyahReader(
+                      chapter: chapter,
+                      initialVerse: initialVerse,
+                    ),
+                  );
+                },
               ),
             ),
           ),

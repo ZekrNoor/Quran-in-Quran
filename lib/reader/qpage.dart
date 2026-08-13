@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:quran_in_quran/reader/chapter.dart';
 import 'package:quran_in_quran/local/consts.dart';
-import 'package:quran_in_quran/local/paths.dart';
 import 'package:quran_in_quran/main.dart';
 import 'package:quran_in_quran/home/surah_menu/name.dart';
+import 'quran_data_loader.dart';
 import 'word.dart';
 
 class QPage extends StatefulWidget {
@@ -46,90 +43,82 @@ class _QPageState extends State<QPage> {
 
   Future<void> _loadPage(int pageNumber, {Chapter? chapter}) async {
     final pageFont = 'P${pageNumber.toString()}';
-
-    final docDirPath = (await getApplicationDocumentsDirectory()).path;
-    final pageFile = File(
-      '$docDirPath/${LocalPaths.quranDir}/${pageNumber.toString()}.json',
+    final Map<String, dynamic> page = await QuranDataLoader.loadPage(
+      pageNumber,
     );
 
-    if (await pageFile.exists()) {
-      final Map<String, dynamic> page = jsonDecode(
-        await pageFile.readAsString(),
-      );
+    lineLoop:
+    for (int l = 1, v = 0, w = 0; ; l++) {
+      verseLoop:
+      for (; ; v++) {
+        if (page["verses"].length == v) {
+          break lineLoop;
+        }
 
-      lineLoop:
-      for (int l = 1, v = 0, w = 0; ; l++) {
-        verseLoop:
-        for (; ; v++) {
-          if (page["verses"].length == v) {
-            break lineLoop;
+        wordLoop:
+        for (; ; w++) {
+          if (page["verses"][v]["words"].length == w) {
+            w = 0;
+
+            break wordLoop;
           }
 
-          wordLoop:
-          for (; ; w++) {
-            if (page["verses"][v]["words"].length == w) {
-              w = 0;
+          final word = page["verses"][v]["words"][w];
 
-              break wordLoop;
+          if (word["line_number"] == (l + 1)) {
+            break verseLoop;
+          }
+
+          final verse = v;
+          void select() {
+            List<Word> ayah = List.empty(growable: true);
+
+            for (int i = 0; i < page["verses"][verse]["words"].length; i++) {
+              final wordFromAyah = page["verses"][verse]["words"][i];
+              ayah.add(
+                Word(
+                  code: wordFromAyah["code_v2"],
+                  pageFont: pageFont,
+                  verseId: wordFromAyah["verse_id"],
+                  verseKey: wordFromAyah["verse_key"],
+                ),
+              );
             }
 
-            final word = page["verses"][v]["words"][w];
+            (widget.onSelectAyah ?? (_) {})(ayah);
+          }
 
-            if (word["line_number"] == (l + 1)) {
-              break verseLoop;
-            }
+          _addWord(
+            word["line_number"],
 
-            final verse = v;
-            void select() {
-              List<Word> ayah = List.empty(growable: true);
+            Word(
+              code: word["code_v2"],
+              pageFont: pageFont,
+              verseId: word["verse_id"],
+              verseKey: word["verse_key"],
 
-              for (int i = 0; i < page["verses"][verse]["words"].length; i++) {
-                final wordFromAyah = page["verses"][verse]["words"][i];
-                ayah.add(
-                  Word(
-                    code: wordFromAyah["code_v2"],
-                    pageFont: pageFont,
-                    verseId: wordFromAyah["verse_id"],
-                    verseKey: wordFromAyah["verse_key"],
+              onSelect: select,
+            ),
+          );
+
+          if (w == 0 && page["verses"][v]["verse_number"] == 1) {
+            if (chapter != null
+                ? page["verses"][v]["chapter_id"] != (chapter.number)
+                : true) {
+              _addWord(
+                page["verses"][v]["words"][0]["line_number"] - 1,
+
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+
+                  child: SurahName(
+                    chapter: QiQApp
+                        .resMan
+                        .chaptersData
+                        .chapters[page["verses"][v]["chapter_id"] - 1],
                   ),
-                );
-              }
-
-              (widget.onSelectAyah ?? (_) {})(ayah);
-            }
-
-            _addWord(
-              word["line_number"],
-
-              Word(
-                code: word["code_v2"],
-                pageFont: pageFont,
-                verseId: word["verse_id"],
-                verseKey: word["verse_key"],
-
-                onSelect: select,
-              ),
-            );
-
-            if (w == 0 && page["verses"][v]["verse_number"] == 1) {
-              if (chapter != null
-                  ? page["verses"][v]["chapter_id"] != (chapter.number)
-                  : true) {
-                _addWord(
-                  page["verses"][v]["words"][0]["line_number"] - 1,
-
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 40.0),
-
-                    child: SurahName(
-                      chapter: QiQApp
-                          .resMan
-                          .chaptersData
-                          .chapters[page["verses"][v]["chapter_id"] - 1],
-                    ),
-                  ),
-                );
-              }
+                ),
+              );
             }
           }
         }
