@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/local/consts.dart';
 
@@ -145,7 +144,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                       child: Column(
                         children: [
                           Icon(
-                            PhosphorIconsRegular.house,
+                            Icons.home,
 
                             color: LocalColors.navBarButtonIcon,
                             size: LocalConsts.navBarIconSize,
@@ -177,7 +176,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                       child: Column(
                         children: [
                           Icon(
-                            PhosphorIconsRegular.magnifyingGlass,
+                            Icons.search,
 
                             color: LocalColors.navBarButtonIcon,
                             size: LocalConsts.navBarIconSize,
@@ -240,7 +239,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                     position: _iconPositionOutAnimation,
 
                     child: const Icon(
-                      PhosphorIconsRegular.house,
+                      Icons.home,
 
                       color: LocalColors.navBarButtonIcon,
                       size: LocalConsts.navBarIconSize,
@@ -250,7 +249,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                     position: _iconPositionInAnimation,
 
                     child: const Icon(
-                      PhosphorIconsRegular.magnifyingGlass,
+                      Icons.search,
 
                       color: LocalColors.navBarButtonIcon,
                       size: LocalConsts.navBarIconSize,

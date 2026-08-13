@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/main.dart';
 import 'list.dart';
@@ -71,7 +70,7 @@ class QiQSurahMenu extends StatelessWidget {
                                 padding: EdgeInsets.all(7),
 
                                 child: Icon(
-                                  PhosphorIconsRegular.arrowBendUpLeft,
+                                  Icons.arrow_back,
 
                                   color: LocalColors.quranAppText,
                                 ),
@@ -104,7 +103,7 @@ class QiQSurahMenu extends StatelessWidget {
                                 padding: EdgeInsets.all(7),
 
                                 child: Icon(
-                                  PhosphorIconsRegular.house,
+                                  Icons.home,
 
                                   color: LocalColors.quranAppText,
                                 ),

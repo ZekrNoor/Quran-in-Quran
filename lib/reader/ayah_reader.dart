@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/local/strings.dart';
 import 'package:quran_in_quran/reader/ayah.dart';
@@ -11,11 +10,7 @@ import 'package:quran_in_quran/reader/translation_loader.dart';
 import 'package:quran_in_quran/ui/gold.dart';
 
 class QiQAyahReader extends StatefulWidget {
-  const QiQAyahReader({
-    super.key,
-    required this.chapter,
-    this.initialVerse,
-  });
+  const QiQAyahReader({super.key, required this.chapter, this.initialVerse});
 
   final Chapter chapter;
   final int? initialVerse;
@@ -94,9 +89,7 @@ class _QiQAyahReaderState extends State<QiQAyahReader> {
             children: [
               const SizedBox(height: 48),
 
-              Expanded(
-                child: _buildBody(),
-              ),
+              Expanded(child: _buildBody()),
 
               const SizedBox(height: 100),
             ],
@@ -129,9 +122,7 @@ class _QiQAyahReaderState extends State<QiQAyahReader> {
   Widget _buildBody() {
     if (_ayahs == null) {
       return const Center(
-        child: CircularProgressIndicator(
-          color: LocalColors.navBarButtonIcon,
-        ),
+        child: CircularProgressIndicator(color: LocalColors.navBarButtonIcon),
       );
     }
 
@@ -173,11 +164,7 @@ class _QiQAyahReaderState extends State<QiQAyahReader> {
 }
 
 class AyahGoldBar extends StatelessWidget {
-  const AyahGoldBar({
-    super.key,
-    this.onListBullets,
-    this.onHome,
-  });
+  const AyahGoldBar({super.key, this.onListBullets, this.onHome});
 
   final VoidCallback? onListBullets;
   final VoidCallback? onHome;
@@ -190,40 +177,30 @@ class AyahGoldBar extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GoldButton(
-              onPressed: onListBullets,
-              icon: PhosphorIconsRegular.listBullets,
-            ),
+            GoldButton(onPressed: onListBullets, icon: Icons.list),
+
+            const SizedBox(width: 4),
+
+            GoldButton(onPressed: () {}, icon: Icons.visibility),
+
+            const SizedBox(width: 4),
+
+            GoldButton(onPressed: () {}, icon: Icons.public),
 
             const SizedBox(width: 4),
 
             GoldButton(
-              onPressed: () {},
-              icon: PhosphorIconsRegular.binoculars,
+              onPressed:
+                  onHome ??
+                  () {
+                    Navigator.of(context).pop();
+                  },
+              icon: Icons.home,
             ),
 
             const SizedBox(width: 4),
 
-            GoldButton(
-              onPressed: () {},
-              icon: PhosphorIconsRegular.globe,
-            ),
-
-            const SizedBox(width: 4),
-
-            GoldButton(
-              onPressed: onHome ?? () {
-                Navigator.of(context).pop();
-              },
-              icon: PhosphorIconsRegular.house,
-            ),
-
-            const SizedBox(width: 4),
-
-            GoldButton(
-              onPressed: () {},
-              icon: PhosphorIconsRegular.sliders,
-            ),
+            GoldButton(onPressed: () {}, icon: Icons.tune),
           ],
         ),
       ),

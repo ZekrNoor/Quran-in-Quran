@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 
 class RoundedContainer extends StatelessWidget {
@@ -65,65 +64,38 @@ class GoldButton extends StatelessWidget {
 }
 
 class GoldBar extends StatelessWidget {
-  const GoldBar({
-    super.key,
-    this.spacing = 4,
-    this.onListBullets,
-  });
+  const GoldBar({super.key, this.spacing = 4, this.onListBullets});
 
   final double spacing;
   final VoidCallback? onListBullets;
 
   @override
   Widget build(BuildContext context) {
-    return RoundedContainer(
-      child: Padding(
-        padding: EdgeInsets.all(6),
-
-        child: Row(
-          children: [
-            GoldButton(
-              onPressed: onListBullets,
-              icon: PhosphorIconsRegular.listBullets,
-            ),
-
-            SizedBox(width: spacing),
-
-            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.binoculars),
-
-            SizedBox(width: spacing),
-
-            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.globe),
-
-            SizedBox(width: spacing),
-
-            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.textT),
-
-            SizedBox(width: spacing),
-
-            GoldButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-
-              icon: PhosphorIconsRegular.house,
-            ),
-
-            SizedBox(width: spacing),
-
-            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.play),
-
-            SizedBox(width: spacing),
-
-            GoldButton(onPressed: () {}, icon: PhosphorIconsRegular.sliders),
-
-            SizedBox(width: spacing),
-
-            GoldButton(
-              onPressed: () {},
-              icon: PhosphorIconsRegular.magnifyingGlassPlus,
-            ),
-          ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 360),
+      child: RoundedContainer(
+        child: Padding(
+          padding: EdgeInsets.all(6),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: spacing,
+            runSpacing: 0,
+            children: [
+              GoldButton(onPressed: onListBullets, icon: Icons.list),
+              GoldButton(onPressed: () {}, icon: Icons.visibility),
+              GoldButton(onPressed: () {}, icon: Icons.public),
+              GoldButton(onPressed: () {}, icon: Icons.text_fields),
+              GoldButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icons.home,
+              ),
+              GoldButton(onPressed: () {}, icon: Icons.play_arrow),
+              GoldButton(onPressed: () {}, icon: Icons.tune),
+              GoldButton(onPressed: () {}, icon: Icons.zoom_in),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/reader/chapter.dart';
 import 'package:quran_in_quran/reader/route.dart';
@@ -82,7 +81,7 @@ class Surah extends StatelessWidget {
                 SizedBox(width: 10),
 
                 Icon(
-                  PhosphorIconsRegular.caretLeft,
+                  Icons.chevron_left,
 
                   color: LocalColors.surahMenuSurahName,
                   size: 24,

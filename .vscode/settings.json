@@ -1,3 +1,8 @@
 {
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "chat.tools.terminal.autoApprove": {
+        "Get-Command": true,
+        "&": true,
+        "flutter": true
+    }
 }

@@ -9,12 +9,14 @@ import 'home/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await windowManager.ensureInitialized();
-  if (Platform.isWindows) {
-    WindowManager.instance.setSize(Size(440, 956));
-    WindowManager.instance.setMinimumSize(const Size(440, 956));
-    WindowManager.instance.setMaximumSize(const Size(440, 956));
-    WindowManager.instance.setResizable(false);
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    if (Platform.isWindows) {
+      WindowManager.instance.setSize(Size(440, 956));
+      WindowManager.instance.setMinimumSize(const Size(440, 956));
+      WindowManager.instance.setMaximumSize(const Size(440, 956));
+      WindowManager.instance.setResizable(false);
+    }
   }
 
   runApp(const QiQApp());

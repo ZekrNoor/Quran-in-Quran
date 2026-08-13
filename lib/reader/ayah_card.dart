@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/local/consts.dart';
 import 'package:quran_in_quran/local/strings.dart';
@@ -8,11 +7,7 @@ import 'package:quran_in_quran/reader/ayah.dart';
 import 'package:quran_in_quran/util/to_hindi.dart';
 
 class AyahCard extends StatefulWidget {
-  const AyahCard({
-    super.key,
-    required this.ayah,
-    required this.translation,
-  });
+  const AyahCard({super.key, required this.ayah, required this.translation});
 
   final Ayah ayah;
   final String? translation;
@@ -35,10 +30,7 @@ class _AyahCardState extends State<AyahCard> {
       decoration: BoxDecoration(
         color: LocalColors.ayahCardBg,
         borderRadius: BorderRadius.circular(LocalConsts.ayahCardRadius),
-        border: Border.all(
-          color: LocalColors.quranAppBorder,
-          width: 0.5,
-        ),
+        border: Border.all(color: LocalColors.quranAppBorder, width: 0.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -122,17 +114,12 @@ class _AyahCardHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: LocalColors.ayahCardHeaderBg,
         borderRadius: BorderRadius.circular(LocalConsts.ayahCardHeaderRadius),
-        border: Border.all(
-          color: LocalColors.quranAppBorder,
-          width: 0.5,
-        ),
+        border: Border.all(color: LocalColors.quranAppBorder, width: 0.5),
       ),
       child: Row(
         children: [
           _AyahActionButton(
-            icon: isBookmarked
-                ? PhosphorIconsFill.bookmarkSimple
-                : PhosphorIconsRegular.bookmarkSimple,
+            icon: isBookmarked ? Icons.bookmark : Icons.bookmark_border,
             iconColor: isBookmarked
                 ? LocalColors.navBarButtonIcon
                 : LocalColors.quranAppText,
@@ -141,17 +128,11 @@ class _AyahCardHeader extends StatelessWidget {
 
           const SizedBox(width: 8),
 
-          _AyahActionButton(
-            icon: PhosphorIconsRegular.play,
-            onPressed: () {},
-          ),
+          _AyahActionButton(icon: Icons.play_arrow, onPressed: () {}),
 
           const SizedBox(width: 8),
 
-          _AyahActionButton(
-            icon: PhosphorIconsRegular.shareNetwork,
-            onPressed: () {},
-          ),
+          _AyahActionButton(icon: Icons.share, onPressed: () {}),
 
           const Spacer(),
 
@@ -187,10 +168,7 @@ class _AyahActionButton extends StatelessWidget {
     return Material(
       color: LocalColors.quranAppWidgetBg,
       shape: const CircleBorder(
-        side: BorderSide(
-          color: LocalColors.quranAppBorder,
-          width: 0.5,
-        ),
+        side: BorderSide(color: LocalColors.quranAppBorder, width: 0.5),
       ),
       child: InkWell(
         onTap: onPressed,
@@ -198,11 +176,7 @@ class _AyahActionButton extends StatelessWidget {
         child: SizedBox(
           width: LocalConsts.ayahCardActionButtonSize,
           height: LocalConsts.ayahCardActionButtonSize,
-          child: Icon(
-            icon,
-            size: 20,
-            color: iconColor,
-          ),
+          child: Icon(icon, size: 20, color: iconColor),
         ),
       ),
     );
@@ -228,7 +202,7 @@ class _TadabburButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                PhosphorIconsRegular.caretLeft,
+                Icons.chevron_left,
                 size: 16,
                 color: LocalColors.quranAppText,
               ),
