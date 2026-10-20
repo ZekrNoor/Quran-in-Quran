@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import '../ui/phosphor_icons.dart';
 import 'package:quran_in_quran/ui/gold.dart';
 import 'package:quran_in_quran/local/colors.dart';
 import 'package:quran_in_quran/local/strings.dart';

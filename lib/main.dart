@@ -1,5 +1,5 @@
-import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:window_manager/window_manager.dart';
 import 'nav_bar/nav_bar.dart';
 import 'resource_manager.dart';
@@ -9,12 +9,12 @@ import 'home/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await windowManager.ensureInitialized();
-  if (Platform.isWindows) {
-    WindowManager.instance.setSize(Size(440, 956));
-    WindowManager.instance.setMinimumSize(const Size(440, 956));
-    WindowManager.instance.setMaximumSize(const Size(440, 956));
-    WindowManager.instance.setResizable(false);
+  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
+    await windowManager.ensureInitialized();
+    await windowManager.setSize(const Size(440, 956));
+    await windowManager.setMinimumSize(const Size(440, 956));
+    await windowManager.setMaximumSize(const Size(440, 956));
+    await windowManager.setResizable(false);
   }
 
   runApp(const QiQApp());
