@@ -86,7 +86,7 @@ class ZekrnoorClient {
 
     bool isLoginOld = username == null || password == null;
     final docDirPath = (await getApplicationDocumentsDirectory()).path;
-    final credFile = File('$docDirPath/$LocalPaths.userCredPath');
+    final credFile = File('$docDirPath/${LocalPaths.userCredPath}');
 
     // check if logged in already
     if (isLoginOld) {
