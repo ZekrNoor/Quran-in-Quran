@@ -1,7 +1,7 @@
 # نقشه ساختار پروژه (Project Structure Map - Graphify)
 
 > تولید شده به صورت خودکار توسط ابزار Graphify برای بهینه‌سازی مصرف توکن و تسریع تحلیل ایجنت‌ها.
-> آخرین بروزرسانی: 2026-10-24T22:38:01.917994
+> آخرین بروزرسانی: 2026-10-25T19:32:37.500927
 
 ## ساختار درختی و محتوای ماژول‌ها
 
@@ -10,6 +10,20 @@
 - **`lib/client/zekrnoor_client.dart`**
   - تعاریف: `class Bookmark`, `class Credentials`, `class ZekrnoorClient`
   - وابستگی‌ها: 'dart:convert', 'dart:io', 'package:http/http.dart' as http...
+
+### 📁 ماژول `data`
+- **`lib/data/models/ayah.dart`**
+  - تعاریف: `class Ayah`
+- **`lib/data/models/comment.dart`**
+  - تعاریف: `class VerseComment`
+- **`lib/data/models/tafsir.dart`**
+  - تعاریف: `class VerseTafsir`, `class VerseTranslation`
+- **`lib/data/repositories/local_storage_repository.dart`**
+  - تعاریف: `class LocalStorageRepository`
+  - وابستگی‌ها: 'dart:convert', 'package:shared_preferences/shared_preferences.dart', '../models/comment.dart'
+- **`lib/data/repositories/quran_repository.dart`**
+  - تعاریف: `class JuzInfo`, `class HizbInfo`, `class QuranRepository`
+  - وابستگی‌ها: '../models/ayah.dart', '../models/tafsir.dart', '../../reader/chapter.dart'...
 
 ### 📁 ماژول `home`
 - **`lib/home/al_quran_al_karim.dart`**
