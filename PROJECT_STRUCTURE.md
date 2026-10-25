@@ -1,7 +1,7 @@
 # نقشه ساختار پروژه (Project Structure Map - Graphify)
 
 > تولید شده به صورت خودکار توسط ابزار Graphify برای بهینه‌سازی مصرف توکن و تسریع تحلیل ایجنت‌ها.
-> آخرین بروزرسانی: 2026-10-25T19:32:37.500927
+> آخرین بروزرسانی: 2026-10-25T19:55:21.181025
 
 ## ساختار درختی و محتوای ماژول‌ها
 
@@ -65,7 +65,7 @@
   - وابستگی‌ها: 'package:quran_in_quran/local/colors.dart', 'package:quran_in_quran/local/consts.dart'
 - **`lib/home/surah_menu/list.dart`**
   - تعاریف: `class SurahList extends StatefulWidget`, `class _SurahListState extends State<SurahList>`
-  - وابستگی‌ها: 'package:quran_in_quran/reader/chapter.dart', 'surah.dart', 'search_box.dart'
+  - وابستگی‌ها: '../../data/repositories/quran_repository.dart', '../../reader/chapter.dart', '../../reader/route.dart'...
 - **`lib/home/surah_menu/menu.dart`**
   - تعاریف: `class QiQSurahMenu extends StatelessWidget`
   - وابستگی‌ها: '../../ui/phosphor_icons.dart', 'package:quran_in_quran/local/colors.dart', 'package:quran_in_quran/main.dart'...
@@ -82,7 +82,7 @@
   - وابستگی‌ها: '../../ui/phosphor_icons.dart', 'package:quran_in_quran/local/colors.dart', 'package:quran_in_quran/reader/chapter.dart'...
 - **`lib/home/todays_ayah.dart`**
   - تعاریف: `class TodaysAyah extends StatelessWidget`
-  - وابستگی‌ها: 'dart:math', 'package:quran_in_quran/local/consts.dart', 'package:quran_in_quran/local/strings.dart'
+  - وابستگی‌ها: 'dart:math', 'package:provider/provider.dart', '../data/repositories/quran_repository.dart'...
 
 ### 📁 ماژول `local`
 - **`lib/local/colors.dart`**
@@ -94,12 +94,17 @@
 ### 📁 ماژول `root`
 - **`lib/main.dart`**
   - تعاریف: `class QiQApp extends StatelessWidget`
-  - وابستگی‌ها: 'package:window_manager/window_manager.dart', 'nav_bar/nav_bar.dart', 'resource_manager.dart'...
+  - وابستگی‌ها: 'package:provider/provider.dart', 'package:window_manager/window_manager.dart', 'nav_bar/nav_bar.dart'...
 
 ### 📁 ماژول `nav_bar`
 - **`lib/nav_bar/nav_bar.dart`**
   - تعاریف: `class NotchedContainerClipper extends CustomClipper<Path>`, `class NavBar extends StatefulWidget`, `class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin`
   - وابستگی‌ها: '../ui/phosphor_icons.dart', 'package:quran_in_quran/local/colors.dart', 'package:quran_in_quran/local/consts.dart'
+
+### 📁 ماژول `providers`
+- **`lib/providers/reflection_provider.dart`**
+  - تعاریف: `class ReflectionProvider extends ChangeNotifier`
+  - وابستگی‌ها: '../data/models/comment.dart', '../data/repositories/local_storage_repository.dart'
 
 ### 📁 ماژول `reader`
 - **`lib/reader/chapter.dart`**
@@ -115,6 +120,15 @@
   - وابستگی‌ها: 'chapter.dart', 'package:quran_in_quran/ui/gold.dart', 'package:quran_in_quran/local/colors.dart'...
 - **`lib/reader/route.dart`**
   - وابستگی‌ها: 'chapter.dart', 'reader.dart'
+- **`lib/reader/verse_card.dart`**
+  - تعاریف: `class VerseCard extends StatelessWidget`
+  - وابستگی‌ها: 'package:provider/provider.dart', '../data/models/ayah.dart', '../providers/reflection_provider.dart'...
+- **`lib/reader/verse_reader_screen.dart`**
+  - تعاریف: `class VerseReaderScreen extends StatefulWidget`, `class _VerseReaderScreenState extends State<VerseReaderScreen>`
+  - وابستگی‌ها: '../data/models/ayah.dart', '../data/repositories/quran_repository.dart', '../reader/chapter.dart'...
+- **`lib/reader/verse_reflection_modal.dart`**
+  - تعاریف: `class VerseReflectionModal extends StatefulWidget`, `class _VerseReflectionModalState extends State<VerseReflectionModal>`, `class Divider extends StatelessWidget`
+  - وابستگی‌ها: 'package:provider/provider.dart', '../data/models/ayah.dart', '../data/repositories/quran_repository.dart'...
 - **`lib/reader/word.dart`**
   - تعاریف: `class Word extends StatelessWidget`
   - وابستگی‌ها: 'package:quran_in_quran/local/colors.dart', 'package:quran_in_quran/local/consts.dart'

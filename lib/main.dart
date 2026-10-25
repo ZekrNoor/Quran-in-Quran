@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 import 'nav_bar/nav_bar.dart';
 import 'resource_manager.dart';
 import 'client/zekrnoor_client.dart';
 import 'home/home.dart';
+import 'providers/reflection_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,27 +32,27 @@ class QiQApp extends StatelessWidget {
   Widget build(BuildContext context) {
     client.login();
 
-    return CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      theme: CupertinoThemeData(brightness: Brightness.light),
-      home: Stack(
-        alignment: AlignmentGeometry.center,
-
-        children: [
-          FutureBuilder(
-            future: resMan.load(),
-
-            builder: (context, snapshot) {
-              if (snapshot.data ?? false) {
-                return QiQHome();
-              } else {
-                return SizedBox();
-              }
-            },
-          ),
-
-          Positioned(bottom: 10, child: NavBar()),
-        ],
+    return ChangeNotifierProvider(
+      create: (_) => ReflectionProvider()..init(),
+      child: CupertinoApp(
+        debugShowCheckedModeBanner: false,
+        theme: const CupertinoThemeData(brightness: Brightness.light),
+        home: Stack(
+          alignment: AlignmentGeometry.center,
+          children: [
+            FutureBuilder(
+              future: resMan.load(),
+              builder: (context, snapshot) {
+                if (snapshot.data ?? false) {
+                  return const QiQHome();
+                } else {
+                  return const SizedBox();
+                }
+              },
+            ),
+            const Positioned(bottom: 10, child: NavBar()),
+          ],
+        ),
       ),
     );
   }

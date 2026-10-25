@@ -230,7 +230,8 @@ class _ReaderState extends State<Reader> {
 }
 
 class QiQReader extends StatefulWidget {
-  const QiQReader({super.key, this.chapter});
+  const QiQReader({super.key, this.chapter, this.page});
+  final int? page;
 
   final Chapter? chapter;
 
@@ -257,7 +258,7 @@ class _QiQReaderState extends State<QiQReader>
     final Chapter chapter =
         widget.chapter ?? QiQApp.resMan.chaptersData.chapters[0];
 
-    _page = chapter.page;
+    _page = widget.page ?? chapter.page;
     _chapter = chapter.number;
 
     _controller = AnimationController(vsync: this, duration: Durations.medium1);

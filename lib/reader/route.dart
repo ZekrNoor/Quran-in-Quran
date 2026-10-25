@@ -4,11 +4,12 @@ import 'reader.dart';
 
 Route<void> createRouteQiQReader({
   Chapter? chapter,
+  int? page,
   bool slideFromRight = true,
 }) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-        QiQReader(chapter: chapter),
+        QiQReader(chapter: chapter, page: page),
 
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final tween = Tween(
